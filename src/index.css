@@ -1,0 +1,404 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px;
+  }
+
+  body {
+    background-color: #fbf6ec;
+    color: #3a1a22;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    overflow-x: hidden;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer utilities {
+  /* Punjabi / Gurmukhi text */
+  .font-gurmukhi {
+    font-family: 'Noto Sans Gurmukhi', 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* Shimmer gradient text for hero title */
+  .text-shimmer {
+    background: linear-gradient(90deg, #1f2d2e, #e0575c, #fb6b6e, #1f2d2e);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 200%;
+    animation: shimmer 5s linear infinite;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     ENHANCED SCROLL-DRIVEN REVEALS & MOTION
+  ═══════════════════════════════════════════════════ */
+  .rv {
+    opacity: 0;
+    transform: translateY(40px) scale(0.97);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .rv.in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .rv-left {
+    opacity: 0;
+    transform: translateX(-40px) scale(0.97);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .rv-left.in {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+
+  .rv-right {
+    opacity: 0;
+    transform: translateX(40px) scale(0.97);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .rv-right.in {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+
+  .rv-scale {
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .rv-scale.in {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Parallax & Floating Watermark Text */
+  @keyframes watermarkFloat {
+    0% {
+      transform: translateY(0px) translateX(0px);
+    }
+    25% {
+      transform: translateY(-16px) translateX(14px);
+    }
+    50% {
+      transform: translateY(-28px) translateX(0px);
+    }
+    75% {
+      transform: translateY(-14px) translateX(-14px);
+    }
+    100% {
+      transform: translateY(0px) translateX(0px);
+    }
+  }
+
+  @keyframes watermarkFloatReverse {
+    0% {
+      transform: translateY(-26px) translateX(0px);
+    }
+    25% {
+      transform: translateY(-12px) translateX(-14px);
+    }
+    50% {
+      transform: translateY(0px) translateX(0px);
+    }
+    75% {
+      transform: translateY(-14px) translateX(14px);
+    }
+    100% {
+      transform: translateY(-26px) translateX(0px);
+    }
+  }
+
+  .watermark-float {
+    animation: watermarkFloat 7.5s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .watermark-float-reverse {
+    animation: watermarkFloatReverse 8s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .watermark-parallax,
+  .watermark-parallax-reverse {
+    will-change: transform;
+    transition: transform 0.12s linear;
+  }
+
+  /* Card 3D tilt — preserve-3d wrapper */
+  .card-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: transform 0.15s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+  }
+
+  /* Nav underline animation */
+  .nav-link {
+    position: relative;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 2px;
+    width: 100%;
+    background: #e0575c;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s ease;
+  }
+  .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Button shine sweep */
+  .btn-shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-shine::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -80%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,0.55), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+  }
+  .btn-shine:hover::after {
+    left: 130%;
+  }
+
+  /* Ripple effect */
+  .ripple-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+  }
+
+  /* Card radial spotlight on hover */
+  .card-spotlight::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(224,87,92,0.16), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .card-spotlight:hover::before {
+    opacity: 1;
+  }
+
+  /* Loader slide-up exit */
+  #loader-overlay {
+    transition: opacity 0.6s 0.2s ease, visibility 0.9s ease, transform 0.9s cubic-bezier(0.7, 0, 0.2, 1);
+  }
+  #loader-overlay.loader-off {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+  }
+
+  /* Safe area aware dock */
+  .mobile-dock {
+    padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Chip pop animation on selection */
+  .chip-selected {
+    animation: pop 0.35s ease-in-out;
+  }
+}
+
+/* Reduced motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  #loader-overlay { display: none !important; }
+  .rv { opacity: 1 !important; transform: none !important; }
+  * { animation: none !important; transition: none !important; }
+}
+
+
+/* ═══════════════════════════════════════════════════
+   HERO VERTICAL SWIPER
+═══════════════════════════════════════════════════ */
+
+.swiper-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Enter: slide in from below */
+.swiper-slide.swiper-enter {
+  animation: swiperEnter 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+/* Leave: slide out upward */
+.swiper-slide.swiper-leave {
+  animation: swiperLeave 0.32s cubic-bezier(0.4, 0, 0.8, 0.2) forwards;
+}
+
+@keyframes swiperEnter {
+  from { opacity: 0; transform: translateY(38px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+@keyframes swiperLeave {
+  from { opacity: 1; transform: translateY(0);     }
+  to   { opacity: 0; transform: translateY(-38px); }
+}
+
+/* Reverse directions (when navigating backward) */
+.swiper-slide.swiper-enter-reverse {
+  animation: swiperEnterReverse 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+.swiper-slide.swiper-leave-reverse {
+  animation: swiperLeaveReverse 0.32s cubic-bezier(0.4, 0, 0.8, 0.2) forwards;
+}
+@keyframes swiperEnterReverse {
+  from { opacity: 0; transform: translateY(-38px); }
+  to   { opacity: 1; transform: translateY(0);     }
+}
+@keyframes swiperLeaveReverse {
+  from { opacity: 1; transform: translateY(0);     }
+  to   { opacity: 0; transform: translateY(38px);  }
+}
+
+
+/* ═══════════════════════════════════════════════════
+   HORIZONTAL PARALLAX WRAPPERS
+   Applied to section heading and description wrappers
+   via inline style updated by scroll JS in each component
+═══════════════════════════════════════════════════ */
+.parallax-wrap {
+  will-change: transform;
+  transition: transform 0.05s linear; /* intentionally low — updated via RAF */
+}
+
+/* ═══════════════════════════════════════════════════
+   TAILWIND KEYFRAMES (already in tailwind.config.js but
+   duplicated here for components that reference them)
+═══════════════════════════════════════════════════ */
+@keyframes float {
+  0%, 100% { transform: translateY(0px);   }
+  50%       { transform: translateY(-8px);  }
+}
+@keyframes shimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes logoPulse {
+  0%, 100% { transform: scale(1);    box-shadow: 0 0 0 0 rgba(224,87,92,0); }
+  50%       { transform: scale(1.07); box-shadow: 0 0 0 12px rgba(224,87,92,0); }
+}
+@keyframes ldb {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+@keyframes pop {
+  0%   { transform: scale(1);    }
+  50%  { transform: scale(1.18); }
+  100% { transform: scale(1);    }
+}
+@keyframes ripple {
+  to { transform: scale(4); opacity: 0; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+/* ═══════════════════════════════════════════════════
+   3D LETTER FLIP KINETIC ANIMATION
+   Instant CSS hover + tap/interval support
+   Visibly somersaults each letter 360 degrees in 3D
+═══════════════════════════════════════════════════ */
+.text-3d-flip-wrap {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+  cursor: pointer;
+}
+
+.text-3d-flip-char {
+  display: inline-block;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.25, 1.4, 0.5, 1),
+              color 0.35s ease,
+              text-shadow 0.35s ease;
+  will-change: transform;
+}
+
+/* Hovering container or individual character triggers the 3D flip */
+.text-3d-flip-wrap:hover .text-3d-flip-char,
+.group:hover .text-3d-flip-char,
+.text-3d-flip-wrap.is-flipped .text-3d-flip-char,
+.text-3d-flip-char:hover {
+  transform: perspective(600px) rotateX(-360deg) translateZ(16px);
+  color: #fb6b6e !important;
+  text-shadow: 0 8px 18px rgba(224, 87, 92, 0.45);
+}
+
+/* ═══════════════════════════════════════════════════
+   3D STACKED CARDS / CARD DECK EFFECT
+   Smooth physics-inspired card deck fan-out & depth
+═══════════════════════════════════════════════════ */
+.deck-stage {
+  perspective: 1200px;
+  -webkit-perspective: 1200px;
+}
+
+.deck-card {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transition: transform 0.48s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.38s ease,
+              box-shadow 0.38s ease;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.deck-card:hover {
+  box-shadow: 0 24px 50px -10px rgba(224, 87, 92, 0.26),
+              0 14px 28px rgba(31, 45, 46, 0.12);
+}

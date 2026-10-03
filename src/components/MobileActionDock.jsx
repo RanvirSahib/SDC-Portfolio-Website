@@ -1,0 +1,34 @@
+export default function MobileActionDock() {
+  return (
+    <div
+      className="fixed left-0 right-0 bottom-0 z-30 flex gap-3 px-[4vw] pt-3 mobile-dock md:hidden"
+      style={{ background: 'rgba(251,246,236,0.95)', backdropFilter: 'blur(8px)' }}
+      role="navigation"
+      aria-label="Mobile quick actions"
+    >
+      {/* Call button */}
+      <a
+        href="tel:+919888129647"
+        id="dock-call-btn"
+        className="flex-1 text-center py-3.5 rounded-full font-jakarta font-bold text-sdc-teal text-sm transition-all duration-200 active:scale-95 hover:opacity-90"
+        style={{ background: 'linear-gradient(135deg, #fb6b6e, #e0575c)' }}
+        aria-label="Call Sahib Decor & Catters"
+      >
+        📞 Call
+      </a>
+
+      {/* WhatsApp button */}
+      <a
+        href="https://wa.me/919888129647"
+        id="dock-whatsapp-btn"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex-1 text-center py-3.5 rounded-full font-jakarta font-bold text-[#04210f] text-sm transition-all duration-200 active:scale-95 hover:opacity-90"
+        style={{ background: '#25d366' }}
+        aria-label="WhatsApp Sahib Decor & Catters"
+      >
+        💬 WhatsApp
+      </a>
+    </div>
+  );
+}
