@@ -1,4 +1,4 @@
-import logoSrc from '../../assets/images/SDC.png';
+import logoSrc from '../assets/images/SDC.png';
 
 export default function Footer() {
   const year = new Date().getFullYear();
