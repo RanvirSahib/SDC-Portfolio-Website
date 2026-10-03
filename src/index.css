@@ -142,6 +142,44 @@
     transition: transform 0.12s linear;
   }
 
+  /* Horizontal Floating Marquee */
+  @keyframes marqueeFloatLeft {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @keyframes marqueeFloatRight {
+    0% {
+      transform: translate3d(-50%, 0, 0);
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .animate-marquee-left {
+    display: flex;
+    width: max-content;
+    animation: marqueeFloatLeft 26s linear infinite;
+    will-change: transform;
+  }
+
+  .animate-marquee-right {
+    display: flex;
+    width: max-content;
+    animation: marqueeFloatRight 30s linear infinite;
+    will-change: transform;
+  }
+
+  .animate-marquee-left:hover,
+  .animate-marquee-right:hover {
+    animation-play-state: paused;
+  }
+
   /* Card 3D tilt — preserve-3d wrapper */
   .card-3d {
     transform-style: preserve-3d;
