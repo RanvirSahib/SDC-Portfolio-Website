@@ -325,28 +325,18 @@ export default function SignatureDeck() {
                     ))}
                   </div>
 
-                  {/* Card Footer Actions */}
-                  <div className="flex items-center gap-2 pt-2 border-t border-sdc-coral/10 shrink-0">
+                  {/* Card Footer Action */}
+                  <div className="pt-2 border-t border-sdc-coral/10 shrink-0">
                     <a
                       href={`https://wa.me/919888129647?text=${encodeURIComponent(card.whatsappQuery)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="flex-1 text-center py-2.5 px-3 rounded-xl bg-sdc-coral hover:bg-sdc-coral2 text-white font-montserrat font-bold text-xs tracking-wide shadow-sm hover:shadow-md transition-all active:scale-95"
+                      className="w-full text-center py-2.5 sm:py-3 px-4 rounded-xl bg-sdc-coral hover:bg-sdc-coral2 text-white font-montserrat font-bold text-xs sm:text-sm tracking-wide shadow-sm hover:shadow-md transition-all active:scale-95 flex items-center justify-center gap-2"
                     >
-                      Enquire on WhatsApp
+                      <span>💬</span>
+                      <span>Enquire on WhatsApp</span>
                     </a>
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        nextCard();
-                      }}
-                      className="px-3.5 py-2.5 rounded-xl border border-sdc-coral/30 hover:border-sdc-coral text-sdc-coral text-xs font-montserrat font-bold hover:bg-sdc-coral/10 transition-colors"
-                      title="Next card"
-                    >
-                      Next ⟶
-                    </button>
                   </div>
                 </div>
               </div>
