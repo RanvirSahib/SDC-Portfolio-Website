@@ -186,10 +186,10 @@ export default function Hero({ ready }) {
     <section
       id="hero"
       ref={heroRef}
-      className="relative flex items-center justify-center text-center overflow-hidden px-4 sm:px-6"
+      className="relative flex flex-col items-center text-center overflow-hidden px-4 sm:px-6"
       style={{
         minHeight: '100svh',
-        paddingTop: 'calc(env(safe-area-inset-top, 0px) + 80px)',
+        paddingTop: 'calc(env(safe-area-inset-top, 0px) + 82px)',
         paddingBottom: '56px',
         background: 'radial-gradient(circle at 50% 40%, #ffffff, #f6ead2 80%)',
       }}
@@ -224,11 +224,11 @@ export default function Hero({ ready }) {
       {/* ── Main content (parallax wrapper) ────────── */}
       <div
         ref={parallaxRef}
-        className="relative z-10 w-full max-w-3xl mx-auto"
+        className="relative z-10 w-full max-w-3xl mx-auto my-auto"
         style={{ transition: 'transform 0.35s cubic-bezier(0.2,0.7,0.2,1)', willChange: 'transform' }}
       >
         {/* Logo */}
-        <div style={stagger(0)} className="mb-5 sm:mb-6">
+        <div style={stagger(0)} className="mt-1 sm:mt-2.5 mb-5 sm:mb-6">
           <img
             src={logoSrc}
             alt="Sahib Decor & Catters"
