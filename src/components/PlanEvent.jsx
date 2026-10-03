@@ -16,11 +16,11 @@ function ChipGroup({ options, value, onChange, groupLabel }) {
             type="button"
             onClick={() => onChange(opt)}
             aria-pressed={active}
-            className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-full
-              text-[0.82rem] sm:text-[0.88rem] font-montserrat font-semibold border
+            className={`px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full
+              text-[0.76rem] sm:text-[0.85rem] font-montserrat font-semibold border
               transition-all duration-200 active:scale-95 touch-manipulation
               ${active
-                ? 'bg-sdc-coral text-sdc-teal border-sdc-coral shadow-md shadow-sdc-coral/25 chip-selected'
+                ? 'bg-sdc-coral text-white border-sdc-coral shadow-md shadow-sdc-coral/25 chip-selected'
                 : 'bg-transparent text-sdc-ink border-sdc-coral/40 hover:border-sdc-coral hover:bg-sdc-coral/10'
               }`}
           >
@@ -68,7 +68,7 @@ export default function PlanEvent() {
   return (
     <section
       id="plan"
-      className="relative overflow-hidden py-14 sm:py-20 lg:py-24 px-4 sm:px-6"
+      className="relative overflow-hidden pt-14 pb-20 sm:pt-20 sm:pb-28 lg:pt-24 lg:pb-32 px-4 sm:px-6"
       aria-labelledby="plan-heading"
       style={{ background: 'linear-gradient(180deg, #fbf6ec 0%, #f5ead8 100%)' }}
     >
@@ -113,7 +113,7 @@ export default function PlanEvent() {
 
         {/* Estimator card */}
         <div
-          className="rv-scale max-w-[700px] mx-auto rounded-2xl sm:rounded-[22px] p-5 sm:p-8 lg:p-10"
+          className="rv-scale max-w-[700px] mx-auto rounded-2xl sm:rounded-[22px] p-4 sm:p-7 lg:p-9"
           style={{
             background: 'linear-gradient(160deg, #fff, #fbf1dd)',
             border: '1px solid #e0575c55',
@@ -121,8 +121,8 @@ export default function PlanEvent() {
           }}
         >
           {/* Event type */}
-          <div className="mb-5 sm:mb-6">
-            <p className="font-montserrat text-sdc-teal text-xs tracking-wider uppercase font-bold mb-2.5">
+          <div className="mb-4 sm:mb-6">
+            <p className="font-montserrat text-sdc-teal text-xs tracking-wider uppercase font-bold mb-2">
               Event type
             </p>
             <ChipGroup
@@ -134,7 +134,7 @@ export default function PlanEvent() {
           </div>
 
           {/* Guest count */}
-          <div className="mb-5 sm:mb-6">
+          <div className="mb-4 sm:mb-6">
             <p className="font-montserrat text-sdc-teal text-xs tracking-wider uppercase font-bold mb-1">
               Guests:{' '}
               <span className="font-playfair text-sdc-coral text-xl sm:text-2xl ml-1 tabular-nums font-bold">{guests}</span>
@@ -160,8 +160,8 @@ export default function PlanEvent() {
           </div>
 
           {/* Food preference */}
-          <div className="mb-5 sm:mb-6">
-            <p className="font-montserrat text-sdc-teal text-xs tracking-wider uppercase font-bold mb-2.5">
+          <div className="mb-4 sm:mb-6">
+            <p className="font-montserrat text-sdc-teal text-xs tracking-wider uppercase font-bold mb-2">
               Food preference
             </p>
             <ChipGroup
@@ -173,8 +173,8 @@ export default function PlanEvent() {
           </div>
 
           {/* Services */}
-          <div className="mb-6 sm:mb-8">
-            <p className="font-montserrat text-sdc-teal text-xs tracking-wider uppercase font-bold mb-2.5">
+          <div className="mb-5 sm:mb-7">
+            <p className="font-montserrat text-sdc-teal text-xs tracking-wider uppercase font-bold mb-2">
               Services
             </p>
             <ChipGroup
@@ -190,17 +190,18 @@ export default function PlanEvent() {
             id="plan-whatsapp-btn"
             type="button"
             onClick={sendWhatsApp}
-            className="btn-shine w-full py-4 rounded-full font-montserrat font-bold text-sdc-teal
-              text-[0.9rem] sm:text-[0.95rem] tracking-wider uppercase
+            className="btn-shine w-full py-3.5 sm:py-4 px-4 sm:px-6 rounded-full font-montserrat font-bold text-white
+              text-[0.78rem] sm:text-[0.92rem] tracking-wide sm:tracking-wider uppercase
               hover:-translate-y-1 hover:shadow-xl active:scale-95
-              transition-all duration-300 touch-manipulation"
+              transition-all duration-300 touch-manipulation flex items-center justify-center gap-2"
             style={{
               background: 'linear-gradient(135deg, #fb6b6e, #e0575c)',
               boxShadow: '0 8px 25px rgba(224,87,92,0.35)',
             }}
             aria-label="Send enquiry on WhatsApp to Sahib Decor & Catters"
           >
-            💬 Send Enquiry on WhatsApp
+            <span className="text-base sm:text-lg shrink-0">💬</span>
+            <span className="whitespace-nowrap">Send Enquiry on WhatsApp</span>
           </button>
         </div>
       </div>

@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import instaSrc from '../../assets/images/insta.png';
-import facebookSrc from '../../assets/images/facebook.png';
+import facebookSrc from '../../assets/images/facebook-logo.png';
 import Text3DFlip from './ui/text-3d-flip';
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
 
   const address = 'B-XII, 1262/N2, Kot Alamgir, Opp. Civil Hospital, Ludhiana, Punjab';
-  const encodedAddress = encodeURIComponent('Opp. Civil Hospital, Kot Alamgir, Ludhiana, Punjab');
-  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
-  const googleDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`;
+  // Exact landmark coordinates (Civil Hospital / Kot Alamgir, Ludhiana) with branded pin marker
+  const mapCoordinates = '30.9064,75.8606';
+  const mapEmbedUrl = `https://maps.google.com/maps?q=${mapCoordinates}+(Sahib+Decor+%26+Catters)&t=&z=16&ie=UTF8&iwloc=B&output=embed`;
+  const googleDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapCoordinates}`;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -36,7 +37,7 @@ export default function Contact() {
     >
       {/* ── Background Floating Horizontal Watermark ──────────────────────── */}
       <div
-        className="absolute top-10 left-0 right-0 pointer-events-none select-none overflow-hidden opacity-[0.06] -z-10"
+        className="absolute top-16 sm:top-20 left-0 right-0 pointer-events-none select-none overflow-hidden opacity-[0.035] -z-10"
         aria-hidden="true"
       >
         <div
@@ -78,25 +79,28 @@ export default function Contact() {
         <div className="rv-left lg:col-span-7 flex flex-col">
           <div className="relative flex-1 rounded-3xl overflow-hidden border-2 border-sdc-coral/30 bg-white/80 backdrop-blur-sm shadow-xl hover:shadow-2xl hover:border-sdc-coral transition-all duration-300 flex flex-col group">
             
-            {/* Interactive Google Maps Frame */}
+            {/* Interactive Google Maps Frame with Pinned Marker */}
             <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-[#e5e3df]">
               <iframe
                 title="Sahib Decor & Catters Location Map"
-                src={`https://maps.google.com/maps?q=${encodedAddress}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+                src={mapEmbedUrl}
                 className="w-full h-full border-0 filter contrast-[1.03] group-hover:scale-[1.02] transition-transform duration-700 ease-out"
                 loading="lazy"
-                aria-label="Google Maps View of Kot Alamgir Ludhiana"
+                aria-label="Google Maps View of Sahib Decor & Catters, Kot Alamgir Ludhiana"
               />
-              {/* Overlay clickable badge */}
-              <a
-                href={googleDirectionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute top-3 right-3 bg-sdc-teal/95 text-white hover:bg-sdc-coral px-3.5 py-2 rounded-xl text-xs sm:text-sm font-montserrat font-bold shadow-lg transition-all duration-300 flex items-center gap-1.5 backdrop-blur-sm group/badge hover:scale-105 active:scale-95"
-              >
-                <span>Open in Google Maps</span>
-                <span className="text-base leading-none transition-transform group-hover/badge:translate-x-0.5 group-hover/badge:-translate-y-0.5">↗</span>
-              </a>
+
+              {/* Floating Live Location Pinned Badge */}
+              <div className="absolute top-3.5 right-3.5 z-10 pointer-events-none">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-sdc-coral/30 shadow-lg">
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sdc-coral opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-sdc-coral"></span>
+                  </span>
+                  <span className="font-montserrat font-bold text-[0.7rem] sm:text-xs text-sdc-teal tracking-wide whitespace-nowrap">
+                    📍 Location Pinned
+                  </span>
+                </div>
+              </div>
             </div>
 
             {/* Address Details & Interactive Buttons */}
@@ -125,11 +129,11 @@ export default function Contact() {
                   id="get-directions-btn"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-shine flex-1 min-w-[200px] text-center px-6 py-3.5 rounded-2xl bg-sdc-coral text-white font-montserrat font-bold text-sm sm:text-base shadow-lg shadow-sdc-coral/25 hover:bg-[#e0575c] hover:-translate-y-0.5 active:scale-98 transition-all duration-200 flex items-center justify-center gap-2"
+                  className="btn-shine flex-1 min-w-[200px] text-center px-5 sm:px-6 py-3.5 rounded-2xl bg-sdc-coral text-white font-montserrat font-bold text-sm sm:text-base shadow-lg shadow-sdc-coral/25 hover:bg-[#e0575c] hover:-translate-y-0.5 active:scale-98 transition-all duration-200 flex items-center justify-center gap-2 whitespace-nowrap"
                 >
-                  <span>🧭</span>
-                  <span>Get Directions on Google Maps</span>
-                  <span className="text-lg leading-none">↗</span>
+                  <span className="shrink-0">🧭</span>
+                  <span className="whitespace-nowrap">Get Directions on Maps</span>
+                  <span className="text-lg leading-none shrink-0">↗</span>
                 </a>
 
                 <button
@@ -197,11 +201,11 @@ export default function Contact() {
           </div>
 
           {/* Social Channels */}
-          <div className="rounded-3xl p-6 sm:p-7 border-2 border-sdc-coral/30 bg-gradient-to-br from-white to-[#fbf1dd] shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="rounded-3xl p-4 sm:p-6 lg:p-7 border-2 border-sdc-coral/30 bg-gradient-to-br from-white to-[#fbf1dd] shadow-lg hover:shadow-xl transition-all duration-300">
             <h3 className="font-playfair font-bold text-sdc-teal text-base sm:text-lg mb-1 leading-tight">
               Follow Our Celebrations
             </h3>
-            <p className="font-poppins text-sdc-mute text-xs sm:text-sm mb-5">
+            <p className="font-poppins text-sdc-mute text-xs sm:text-sm mb-4 sm:mb-5">
               Watch real setups, live videos, decor photos and latest events
             </p>
 
@@ -212,24 +216,24 @@ export default function Contact() {
                 id="contact-instagram-card"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-3.5 rounded-2xl bg-white border border-sdc-coral/20 hover:border-sdc-coral shadow-sm hover:shadow-md transition-all duration-200 group"
+                className="flex items-center justify-between gap-2.5 p-3 sm:p-3.5 rounded-2xl bg-white border border-sdc-coral/20 hover:border-sdc-coral shadow-sm hover:shadow-md transition-all duration-200 group overflow-hidden"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
                   <img
                     src={instaSrc}
                     alt="Instagram logo"
-                    className="w-11 h-11 rounded-2xl object-cover shadow-sm group-hover:scale-105 transition-transform duration-300"
+                    className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl object-cover shadow-sm group-hover:scale-105 transition-transform duration-300 shrink-0"
                   />
-                  <div>
-                    <span className="block font-montserrat font-bold text-sdc-ink text-sm sm:text-base group-hover:text-sdc-coral transition-colors">
+                  <div className="min-w-0 flex-1">
+                    <span className="block font-montserrat font-bold text-sdc-ink text-sm sm:text-base group-hover:text-sdc-coral transition-colors truncate">
                       Instagram
                     </span>
-                    <span className="block font-poppins text-sdc-mute text-xs">
+                    <span className="block font-poppins text-sdc-mute text-[0.72rem] sm:text-xs truncate" title="@sahib_decorators_caterers">
                       @sahib_decorators_caterers
                     </span>
                   </div>
                 </div>
-                <span className="text-xs font-montserrat font-bold text-sdc-coral px-3 py-1.5 rounded-lg bg-sdc-coral/10 group-hover:bg-sdc-coral group-hover:text-white transition-all">
+                <span className="shrink-0 text-xs font-montserrat font-bold text-sdc-coral px-2.5 sm:px-3 py-1.5 rounded-lg bg-sdc-coral/10 group-hover:bg-sdc-coral group-hover:text-white transition-all whitespace-nowrap">
                   Follow ↗
                 </span>
               </a>
@@ -240,24 +244,24 @@ export default function Contact() {
                 id="contact-facebook-card"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-3.5 rounded-2xl bg-white border border-sdc-coral/20 hover:border-sdc-coral shadow-sm hover:shadow-md transition-all duration-200 group"
+                className="flex items-center justify-between gap-2.5 p-3 sm:p-3.5 rounded-2xl bg-white border border-sdc-coral/20 hover:border-sdc-coral shadow-sm hover:shadow-md transition-all duration-200 group overflow-hidden"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
                   <img
                     src={facebookSrc}
                     alt="Facebook logo"
-                    className="w-11 h-11 rounded-2xl object-cover shadow-sm group-hover:scale-105 transition-transform duration-300"
+                    className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-contain shadow-sm group-hover:scale-105 transition-transform duration-300 shrink-0"
                   />
-                  <div>
-                    <span className="block font-montserrat font-bold text-sdc-ink text-sm sm:text-base group-hover:text-sdc-coral transition-colors">
+                  <div className="min-w-0 flex-1">
+                    <span className="block font-montserrat font-bold text-sdc-ink text-sm sm:text-base group-hover:text-sdc-coral transition-colors truncate">
                       Facebook
                     </span>
-                    <span className="block font-poppins text-sdc-mute text-xs">
+                    <span className="block font-poppins text-sdc-mute text-[0.72rem] sm:text-xs truncate" title="Sunny Singh (Jatinderpal Singh)">
                       Sunny Singh (Jatinderpal Singh)
                     </span>
                   </div>
                 </div>
-                <span className="text-xs font-montserrat font-bold text-sdc-teal px-3 py-1.5 rounded-lg bg-sdc-teal/10 group-hover:bg-sdc-teal group-hover:text-white transition-all">
+                <span className="shrink-0 text-xs font-montserrat font-bold text-sdc-teal px-2.5 sm:px-3 py-1.5 rounded-lg bg-sdc-teal/10 group-hover:bg-sdc-teal group-hover:text-white transition-all whitespace-nowrap">
                   Visit ↗
                 </span>
               </a>

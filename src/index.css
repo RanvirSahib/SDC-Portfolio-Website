@@ -472,3 +472,19 @@
   box-shadow: 0 24px 50px -10px rgba(224, 87, 92, 0.26),
               0 14px 28px rgba(31, 45, 46, 0.12);
 }
+
+/* ═══════════════════════════════════════════════════
+   SERVICES GRID: Centered 4 + 3 Layout on Desktop
+═══════════════════════════════════════════════════ */
+@media (min-width: 1024px) {
+  .services-grid-centered {
+    display: grid !important;
+    grid-template-columns: repeat(24, minmax(0, 1fr)) !important;
+  }
+  .services-grid-centered > * {
+    grid-column: span 6 !important;
+  }
+  .services-grid-centered > :nth-child(5) {
+    grid-column: 4 / span 6 !important;
+  }
+}

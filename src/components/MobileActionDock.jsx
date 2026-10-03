@@ -1,8 +1,8 @@
 export default function MobileActionDock() {
   return (
     <div
-      className="fixed left-0 right-0 bottom-0 z-30 flex gap-3 px-[4vw] pt-3 mobile-dock md:hidden"
-      style={{ background: 'rgba(251,246,236,0.95)', backdropFilter: 'blur(8px)' }}
+      className="fixed left-0 right-0 bottom-0 z-30 flex gap-3 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] border-t border-sdc-coral/15 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] md:hidden"
+      style={{ background: 'rgba(251,246,236,0.96)', backdropFilter: 'blur(10px)' }}
       role="navigation"
       aria-label="Mobile quick actions"
     >

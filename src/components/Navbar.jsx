@@ -123,25 +123,25 @@ export default function Navbar() {
         </div>
 
         {/* Right CTA Actions */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <a
             href="tel:+919888129647"
             id="navbar-call-btn"
-            className="btn-shine px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-montserrat font-bold text-xs sm:text-sm tracking-wider uppercase text-sdc-teal shadow-md shadow-sdc-coral/25 hover:-translate-y-0.5 active:scale-95 transition-all duration-200 flex items-center gap-1.5"
+            className="btn-shine px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full font-montserrat font-bold text-xs sm:text-sm tracking-normal sm:tracking-wider uppercase text-sdc-teal shadow-md shadow-sdc-coral/25 hover:-translate-y-0.5 active:scale-95 transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shrink-0"
             style={{
               background: 'linear-gradient(135deg, #fb6b6e, #e0575c)',
             }}
             aria-label="Call Sahib Decor & Catters"
           >
-            <span>📞</span>
-            <span>Call Now</span>
+            <span className="shrink-0 text-sm">📞</span>
+            <span className="whitespace-nowrap font-bold">Call Now</span>
           </a>
 
           {/* Mobile Menu Hamburger */}
           <button
             type="button"
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden w-10 h-10 rounded-xl bg-white/70 border border-sdc-coral/20 flex flex-col items-center justify-center gap-1.5 text-sdc-teal hover:text-sdc-coral transition-colors"
+            className="md:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/70 border border-sdc-coral/20 flex flex-col items-center justify-center gap-1.5 text-sdc-teal hover:text-sdc-coral transition-colors shrink-0"
             aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={menuOpen}
           >

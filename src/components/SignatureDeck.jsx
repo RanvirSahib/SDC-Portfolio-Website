@@ -12,7 +12,7 @@ import sdcAnandKarajSrc from '../../assets/images/sdc-anand-karaj.jpg';
 const DECK_CARDS = [
   {
     id: 'mandap',
-    badge: '👑 Royal Mandap & Vows',
+    badge: '👑 Royal Mandap',
     title: 'Traditional Floral Mandaps',
     punjabi: 'ਸ਼ਾਹੀ ਮੰਡਪ ਤੇ ਪਵਿੱਤਰ ਫੇਰਿਆਂ ਦੀ ਸਜਾਵਟ',
     desc: 'Grand traditional carved pillars, fresh cascading marigold and rose garlands, brass ceremonial lamps, and holy havan kund setup under rich ivory drapes.',
@@ -22,7 +22,7 @@ const DECK_CARDS = [
   },
   {
     id: 'catering',
-    badge: '🍽️ Royal Punjabi Zaika',
+    badge: '🍽️ Punjabi Zaika',
     title: 'Live Counters & Gourmet Catering',
     punjabi: 'ਤਾਜ਼ਾ ਗਰਮਾ-ਗਰਮ ਲਾਈਵ ਕਾਊਂਟਰ ਤੇ ਬੇਮਿਸਾਲ ਸਵਾਦ',
     desc: 'Lavish copper and brass chafing setups, master chefs serving sizzling tandoori delicacies, live Amritsari kulchas, Dal Makhani, and hot desserts.',
@@ -32,7 +32,7 @@ const DECK_CARDS = [
   },
   {
     id: 'haldi-mehndi',
-    badge: '🌸 Joyous Traditions',
+    badge: '🌸 Mehndi & Haldi',
     title: 'Mehndi, Haldi & Sangeet Sets',
     punjabi: 'ਰੰਗ-ਬਿਰੰਗੇ ਝੂਲੇ, ਫੁਲਕਾਰੀ ਥੀਮ ਤੇ ਢੋਲ ਸਟੇਜ',
     desc: 'Vibrant marigold canopies, decorated wooden floral jhoola, heritage phulkari backdrops, antique brass urli with floating petals, and joyful celebration zones.',
@@ -52,7 +52,7 @@ const DECK_CARDS = [
   },
   {
     id: 'stages',
-    badge: '✨ Royal Reception Stage',
+    badge: '✨ Wedding Stage',
     title: 'Grand Stages & Crystal Chandeliers',
     punjabi: 'ਸ਼ਾਨਦਾਰ ਰਿਸੈਪਸ਼ਨ ਸਟੇਜ ਤੇ ਝੂਮਰ ਸਜਾਵਟ',
     desc: 'Bespoke crystal backdrops, imported fresh flower walls, designer royal velvet seating, and ambient warm lighting for cinematic photography.',
@@ -62,7 +62,7 @@ const DECK_CARDS = [
   },
   {
     id: 'anand-karaj',
-    badge: '🕊️ Sacred Respect',
+    badge: '🕊️ Anand Karaj',
     title: 'Pavitra Anand Karaj & Gurdwara Setups',
     punjabi: 'ਪਵਿੱਤਰ ਆਨੰਦ ਕਾਰਜ ਲਈ ਮਰਯਾਦਾ ਅਨੁਸਾਰ ਸਜਾਵਟ',
     desc: 'Reverent, peaceful white and gold floral arrangements, respectful floor carpetings, and dignified palki sahib decorations adhering strictly to Sikh maryada.',
@@ -211,7 +211,7 @@ export default function SignatureDeck() {
       >
         {/* ── 3D Card Stack Container ──────────────────────────── */}
         <div
-          className="relative w-full max-w-[420px] sm:max-w-[460px] h-[520px] sm:h-[540px] deck-stage cursor-pointer"
+          className="relative w-full max-w-[420px] sm:max-w-[460px] h-[565px] sm:h-[545px] deck-stage cursor-pointer"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           aria-label="Card Deck of SDC Signature Highlights"
@@ -266,7 +266,7 @@ export default function SignatureDeck() {
                     selectCard(i);
                   }
                 }}
-                className={`absolute inset-0 deck-card rounded-2xl sm:rounded-[22px] p-5 sm:p-6 flex flex-col justify-between overflow-hidden ${
+                className={`absolute inset-0 deck-card rounded-2xl sm:rounded-[22px] p-4 sm:p-5 lg:p-6 flex flex-col justify-between overflow-hidden ${
                   isTop
                     ? 'border-2 border-sdc-coral/50 shadow-[0_22px_45px_-10px_rgba(224,87,92,0.22),0_15px_30px_rgba(31,45,46,0.12)]'
                     : 'border border-sdc-coral/25 shadow-lg'
@@ -281,17 +281,18 @@ export default function SignatureDeck() {
               >
                 {/* Card Top Ribbon */}
                 <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="inline-flex items-center gap-1 text-[0.72rem] sm:text-xs font-montserrat font-bold px-2.5 py-1 rounded-full bg-sdc-coral/10 text-sdc-coral border border-sdc-coral/20">
+                  <div className="flex items-center justify-between gap-2 mb-2.5 sm:mb-3 shrink-0">
+                    <span className="inline-flex items-center gap-1 text-[0.7rem] sm:text-xs font-montserrat font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-sdc-coral/10 text-sdc-coral border border-sdc-coral/20 whitespace-nowrap shrink-0">
                       {card.badge}
                     </span>
-                    <span className="text-[0.72rem] font-cinzel tracking-wider text-sdc-teal/80 font-bold uppercase">
-                      Sahib Decor &amp; Catters
+                    <span className="text-[0.65rem] sm:text-[0.72rem] font-cinzel tracking-wider text-sdc-teal/80 font-bold uppercase whitespace-nowrap shrink-0">
+                      <span className="sm:hidden">SDC Heritage</span>
+                      <span className="hidden sm:inline">Sahib Decor &amp; Catters</span>
                     </span>
                   </div>
 
                   {/* Card Visual Photo */}
-                  <div className="relative w-full h-40 sm:h-44 rounded-xl overflow-hidden mb-3.5 group/img border border-sdc-coral/15 shadow-inner">
+                  <div className="relative w-full h-36 sm:h-44 rounded-xl overflow-hidden mb-3 group/img border border-sdc-coral/15 shadow-inner shrink-0">
                     <img
                       src={card.image}
                       alt={card.title}
@@ -305,17 +306,17 @@ export default function SignatureDeck() {
                   </div>
 
                   {/* Card Title & Description */}
-                  <h3 className="font-playfair font-bold text-sdc-teal text-lg sm:text-xl leading-tight mb-2">
+                  <h3 className="font-playfair font-bold text-sdc-teal text-[1.05rem] sm:text-lg lg:text-xl leading-snug mb-1.5 sm:mb-2">
                     {card.title}
                   </h3>
-                  <p className="font-poppins text-sdc-mute text-xs sm:text-[0.85rem] leading-relaxed mb-3">
+                  <p className="font-poppins text-sdc-mute text-xs sm:text-[0.85rem] leading-relaxed mb-2.5 sm:mb-3">
                     {card.desc}
                   </p>
                 </div>
 
                 {/* Key Bullet Features & Actions */}
                 <div>
-                  <div className="space-y-1.5 mb-4 border-t border-sdc-coral/15 pt-3">
+                  <div className="space-y-1 sm:space-y-1.5 mb-3 sm:mb-4 border-t border-sdc-coral/15 pt-2.5 sm:pt-3">
                     {card.features.map((feat, featIdx) => (
                       <div key={featIdx} className="flex items-center gap-2 text-xs text-sdc-ink">
                         <span className="text-sdc-coral font-bold text-sm">✓</span>
@@ -325,7 +326,7 @@ export default function SignatureDeck() {
                   </div>
 
                   {/* Card Footer Actions */}
-                  <div className="flex items-center gap-2 pt-2 border-t border-sdc-coral/10">
+                  <div className="flex items-center gap-2 pt-2 border-t border-sdc-coral/10 shrink-0">
                     <a
                       href={`https://wa.me/919888129647?text=${encodeURIComponent(card.whatsappQuery)}`}
                       target="_blank"

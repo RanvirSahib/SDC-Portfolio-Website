@@ -71,7 +71,7 @@ function ServiceCard({ service, index, isLast }) {
       className={`rv card-3d card-spotlight relative rounded-2xl p-5 sm:p-7 cursor-default
         transition-all duration-300 group
         ${isLast
-          ? 'sm:col-span-2 xl:col-span-1 border-2 border-sdc-coral bg-gradient-to-br from-sdc-coral/5 to-sdc-coral/10 hover:shadow-xl hover:shadow-sdc-coral/20'
+          ? 'sm:col-span-2 border-2 border-sdc-coral bg-gradient-to-br from-sdc-coral/5 to-sdc-coral/10 hover:shadow-xl hover:shadow-sdc-coral/20'
           : 'border border-sdc-coral/25 bg-gradient-to-br from-white to-[#fbf1dd] hover:border-sdc-coral hover:shadow-xl hover:shadow-sdc-teal/10'
         }`}
       style={{
@@ -208,7 +208,7 @@ export default function Services() {
         the row nicely instead of sitting alone at half-width.
         On xl (4-col), it reverts to 1 col normally (row has 5,6,7).
       */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 relative z-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 services-grid-centered gap-4 sm:gap-5 lg:gap-6 relative z-10">
         {SERVICES.map((service, i) => (
           <ServiceCard
             key={service.title}
