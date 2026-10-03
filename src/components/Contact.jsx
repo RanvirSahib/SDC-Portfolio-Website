@@ -6,11 +6,11 @@ import Text3DFlip from './ui/text-3d-flip';
 export default function Contact() {
   const [copied, setCopied] = useState(false);
 
-  const address = 'B-XII, 1262/N2, Kot Alamgir, Opp. Civil Hospital, Ludhiana, Punjab';
-  // Exact landmark coordinates (Civil Hospital / Kot Alamgir, Ludhiana) with branded pin marker
-  const mapCoordinates = '30.9064,75.8606';
-  const mapEmbedUrl = `https://maps.google.com/maps?q=${mapCoordinates}+(Sahib+Decor+%26+Catters)&t=&z=16&ie=UTF8&iwloc=B&output=embed`;
-  const googleDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapCoordinates}`;
+  const address = 'B-XIII, 1262/N2, Kot Alamgir, Opp. Civil Hospital, Ludhiana, Punjab';
+  // Exact shop coordinates from official Google Maps pin: 30.9062979, 75.8586303
+  const mapCoordinates = '30.9062979,75.8586303';
+  const mapEmbedUrl = `https://maps.google.com/maps?q=${mapCoordinates}+(Sahib+Decor+%26+Catters)&t=&z=17&ie=UTF8&iwloc=B&output=embed`;
+  const googleDirectionsUrl = 'https://maps.app.goo.gl/JDRqsNcWRfDD9zS18';
 
   useEffect(() => {
     const observer = new IntersectionObserver(
