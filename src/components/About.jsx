@@ -36,8 +36,8 @@ export default function About() {
         <div
           className="watermark-glide-left font-cinzel font-black whitespace-nowrap text-[5rem] sm:text-[8rem] lg:text-[10rem] text-sdc-teal leading-none"
         >
-          <span>SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS •&nbsp;</span>
-          <span>SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS •&nbsp;</span>
+          <span>SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS •&nbsp;</span>
+          <span>SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS •&nbsp;</span>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
@@ -67,7 +67,7 @@ export default function About() {
             <strong className="text-sdc-ink font-semibold">
               Jatinderpal Singh (Sunny Singh)
             </strong>
-            , Sahib Decor &amp; Catters has been the name families across Punjab trust for
+            , Sahib Decorators &amp; Caterers has been the name families across Punjab trust for
             weddings, mehndi, birthdays, baby showers, religious and festive events and
             every occasion in between. From Ludhiana to Chandigarh and Amritsar to
             destination venues, every event is executed 100% to your vision.
@@ -115,7 +115,7 @@ export default function About() {
             </span>
             <h3 className="text-sdc-teal text-xl sm:text-2xl mt-1">
               <span className="font-playfair font-bold">Moments Crafted by </span>
-              <span className="font-cinzel font-bold text-sdc-coral">Sahib Decor &amp; Catters</span>
+              <span className="font-cinzel font-bold text-sdc-coral">Sahib Decorators &amp; Caterers</span>
             </h3>
           </div>
           <span className="hidden sm:inline-block font-gurmukhi text-sdc-coral font-semibold text-sm">

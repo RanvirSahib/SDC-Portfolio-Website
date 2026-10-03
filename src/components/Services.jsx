@@ -168,8 +168,8 @@ export default function Services() {
         <div
           className="watermark-glide-left font-cinzel font-black whitespace-nowrap text-[5rem] sm:text-[8rem] lg:text-[10rem] text-sdc-teal leading-none"
         >
-          <span>SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS •&nbsp;</span>
-          <span>SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS •&nbsp;</span>
+          <span>SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS •&nbsp;</span>
+          <span>SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS •&nbsp;</span>
         </div>
       </div>
 
@@ -190,7 +190,7 @@ export default function Services() {
           style={{ fontSize: 'clamp(1.5rem, 5vw, 2.6rem)' }}
         >
           <Text3DFlip
-            text="Decor & Catering for Every Occasion"
+            text="Decorators & Caterers for Every Occasion"
             className="text-sdc-coral"
             staggerDelay={20}
             autoFlipInterval={7000}

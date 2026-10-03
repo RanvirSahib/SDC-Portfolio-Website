@@ -12,22 +12,22 @@ export default function Footer() {
       aria-label="Site footer"
     >
       {/* Logo */}
-      <a href="#hero" aria-label="Back to top — Sahib Decor & Catters">
+      <a href="#hero" aria-label="Back to top — Sahib Decorators & Caterers">
         <img
           src={logoSrc}
-          alt="Sahib Decor & Catters Logo"
+          alt="Sahib Decorators & Caterers Logo"
           className="w-14 h-14 rounded-2xl object-contain bg-sdc-teal mx-auto mb-3 hover:rotate-[-10deg] hover:scale-110 transition-transform duration-500 ease-bounce-out"
         />
       </a>
 
       {/* Brand name */}
       <p className="font-cinzel text-sdc-coral font-bold text-sm tracking-widest mb-1">
-        SAHIB DECOR &amp; CATTERS
+        SAHIB DECORATORS &amp; CATERERS
       </p>
 
       {/* Copyright */}
       <p className="font-poppins text-sdc-mute text-xs">
-        &copy; {year} Sahib Decor &amp; Catters (SDC) &middot; Ludhiana, Punjab
+        &copy; {year} Sahib Decorators &amp; Caterers (SDC) &middot; Ludhiana, Punjab
       </p>
 
       {/* Social and Contact Links with Brand Logos */}
@@ -69,7 +69,7 @@ export default function Footer() {
         <span className="text-sdc-coral/30 text-xs hidden xs:inline select-none">·</span>
 
         <a
-          href="https://wa.me/919888129647?text=Hello%20Sunny%20Ji%2C%20I%20would%20like%20to%20discuss%20an%20event%20with%20Sahib%20Decor%20%26%20Catters."
+          href="https://wa.me/919888129647?text=Hello%20Sunny%20Ji%2C%20I%20would%20like%20to%20discuss%20an%20event%20with%20Sahib%20Decorators%20%26%20Caterers."
           target="_blank"
           rel="noopener noreferrer"
           className="group inline-flex items-center gap-1.5 font-montserrat font-semibold text-sdc-ink/80 text-xs hover:text-[#25D366] transition-colors duration-200 whitespace-nowrap"

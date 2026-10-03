@@ -73,7 +73,7 @@ export default function Navbar() {
           href="#hero"
           onClick={() => handleLinkClick('')}
           className="flex items-center gap-2.5 group"
-          aria-label="Sahib Decor & Catters home"
+          aria-label="Sahib Decorators & Caterers home"
         >
           <img
             src={logoSrc}
@@ -88,10 +88,10 @@ export default function Navbar() {
               SDC
             </span>
             <span
-              className="font-times text-[0.6rem] sm:text-[0.67rem] tracking-[0.12em] text-sdc-teal font-bold uppercase opacity-95 mt-0.5"
+              className="font-times text-[0.58rem] sm:text-[0.65rem] tracking-[0.1em] text-sdc-teal font-bold uppercase opacity-95 mt-0.5 whitespace-nowrap"
               style={{ fontFamily: '"Times New Roman", Times, serif' }}
             >
-              Sahib Decor &amp; Catters
+              Sahib Decorators &amp; Caterers
             </span>
           </div>
         </a>
@@ -131,7 +131,7 @@ export default function Navbar() {
             style={{
               background: 'linear-gradient(135deg, #fb6b6e, #e0575c)',
             }}
-            aria-label="Call Sahib Decor & Catters"
+            aria-label="Call Sahib Decorators & Caterers"
           >
             <span className="shrink-0 text-sm">📞</span>
             <span className="whitespace-nowrap font-bold">Call Now</span>

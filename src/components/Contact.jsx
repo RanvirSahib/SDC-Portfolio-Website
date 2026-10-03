@@ -6,10 +6,10 @@ import Text3DFlip from './ui/text-3d-flip';
 export default function Contact() {
   const [copied, setCopied] = useState(false);
 
-  const address = 'B-XIII, 1262/N2, Kot Alamgir, Opp. Civil Hospital, Ludhiana, Punjab';
+  const address = 'Near Dr. Gagandeep Hospital & Near Civil Hospital, Kot Alamgir, Ludhiana, Punjab';
   // Exact shop coordinates from official Google Maps pin: 30.9062979, 75.8586303
   const mapCoordinates = '30.9062979,75.8586303';
-  const mapEmbedUrl = `https://maps.google.com/maps?q=${mapCoordinates}+(Sahib+Decor+%26+Catters)&t=&z=17&ie=UTF8&iwloc=B&output=embed`;
+  const mapEmbedUrl = `https://maps.google.com/maps?q=${mapCoordinates}+(Sahib+Decorators+%26+Caterers)&t=&z=17&ie=UTF8&iwloc=B&output=embed`;
   const googleDirectionsUrl = 'https://maps.app.goo.gl/JDRqsNcWRfDD9zS18';
 
   useEffect(() => {
@@ -43,8 +43,8 @@ export default function Contact() {
         <div
           className="watermark-glide-left font-cinzel font-black whitespace-nowrap text-[5rem] sm:text-[8rem] lg:text-[10rem] text-sdc-teal leading-none"
         >
-          <span>SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS •&nbsp;</span>
-          <span>SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS •&nbsp;</span>
+          <span>SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS •&nbsp;</span>
+          <span>SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS •&nbsp;</span>
         </div>
       </div>
       {/* ── Section Header ─────────────────────────────────────── */}
@@ -82,11 +82,11 @@ export default function Contact() {
             {/* Interactive Google Maps Frame with Pinned Marker */}
             <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-[#e5e3df]">
               <iframe
-                title="Sahib Decor & Catters Location Map"
+                title="Sahib Decorators & Caterers Location Map"
                 src={mapEmbedUrl}
                 className="w-full h-full border-0 filter contrast-[1.03] group-hover:scale-[1.02] transition-transform duration-700 ease-out"
                 loading="lazy"
-                aria-label="Google Maps View of Sahib Decor & Catters, Kot Alamgir Ludhiana"
+                aria-label="Google Maps View of Sahib Decorators & Caterers, Kot Alamgir Ludhiana"
               />
 
               {/* Floating Live Location Pinned Badge */}
@@ -111,14 +111,14 @@ export default function Contact() {
                     📍
                   </span>
                   <span className="font-playfair font-bold text-sdc-teal text-base sm:text-lg tracking-wide">
-                    Main Office &amp; Decor Studio
+                    Main Office &amp; Decorators Studio
                   </span>
                 </div>
                 <p className="font-poppins text-sdc-ink text-base sm:text-[1.12rem] font-semibold leading-relaxed mb-1">
-                  {address}
+                  Near Dr. Gagandeep Hospital &amp; Near Civil Hospital
                 </p>
                 <p className="font-poppins text-sdc-mute text-xs sm:text-sm">
-                  Opposite Civil Hospital, Kot Alamgir, Ludhiana, Punjab
+                  Kot Alamgir, Ludhiana, Punjab — 141009
                 </p>
               </div>
 
@@ -188,7 +188,7 @@ export default function Contact() {
                 <span>Call Now</span>
               </a>
               <a
-                href="https://wa.me/919888129647?text=Hello%20Sunny%20Ji%2C%20I%20would%20like%20to%20discuss%20an%20event%20with%20Sahib%20Decor%20%26%20Catters."
+                href="https://wa.me/919888129647?text=Hello%20Sunny%20Ji%2C%20I%20would%20like%20to%20discuss%20an%20event%20with%20Sahib%20Decorators%20%26%20Caterers."
                 id="contact-whatsapp-btn"
                 target="_blank"
                 rel="noopener noreferrer"

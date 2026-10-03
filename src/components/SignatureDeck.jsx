@@ -173,8 +173,8 @@ export default function SignatureDeck() {
         <div
           className="watermark-glide-right font-cinzel font-black whitespace-nowrap text-[5rem] sm:text-[8rem] lg:text-[10rem] text-sdc-teal leading-none"
         >
-          <span>SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS •&nbsp;</span>
-          <span>SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS •&nbsp;</span>
+          <span>SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS •&nbsp;</span>
+          <span>SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS •&nbsp;</span>
         </div>
       </div>
 
@@ -199,7 +199,7 @@ export default function SignatureDeck() {
           />
         </h2>
         <p className="font-poppins text-sdc-mute text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-          From grand royal stages to authentic live Punjabi catering, discover the craft, passion, and care that make every Sahib Decor &amp; Catters celebration extraordinary.
+          From grand royal stages to authentic live Punjabi catering, discover the craft, passion, and care that make every Sahib Decorators &amp; Caterers celebration extraordinary.
         </p>
       </div>
 
@@ -287,7 +287,7 @@ export default function SignatureDeck() {
                     </span>
                     <span className="text-[0.65rem] sm:text-[0.72rem] font-cinzel tracking-wider text-sdc-teal/80 font-bold uppercase whitespace-nowrap shrink-0">
                       <span className="sm:hidden">SDC Heritage</span>
-                      <span className="hidden sm:inline">Sahib Decor &amp; Catters</span>
+                      <span className="hidden sm:inline">Sahib Decorators &amp; Caterers</span>
                     </span>
                   </div>
 

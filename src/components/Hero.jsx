@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
-import logoSrc from '../../assets/images/SDC.png';
+import logoSrc from '../assets/images/SDC.png';
 import Text3DFlip from './ui/text-3d-flip';
 
 /* ── Vertical swiper slides ───────────────────────────────────────── */
@@ -231,7 +231,7 @@ export default function Hero({ ready }) {
         <div style={stagger(0)} className="mt-1 sm:mt-2.5 mb-5 sm:mb-6">
           <img
             src={logoSrc}
-            alt="Sahib Decor & Catters"
+            alt="Sahib Decorators & Caterers"
             className="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-[22px] sm:rounded-[28px]
               object-contain bg-sdc-teal shadow-2xl shadow-sdc-teal/30 mx-auto animate-float
               hover:rotate-[-10deg] hover:scale-110 transition-transform duration-500 ease-bounce-out"
@@ -262,9 +262,9 @@ export default function Hero({ ready }) {
         <div style={stagger(2)} className="mb-4 sm:mb-5">
           <h1
             className="font-cinzel font-black text-shimmer leading-[1.1] sm:leading-[1.15]"
-            style={{ fontSize: 'clamp(1.55rem, 7vw, 4.2rem)' }}
+            style={{ fontSize: 'clamp(1.45rem, 6.2vw, 4rem)' }}
           >
-            SAHIB DECOR &amp; CATTERS
+            SAHIB DECORATORS &amp; CATERERS
           </h1>
         </div>
 

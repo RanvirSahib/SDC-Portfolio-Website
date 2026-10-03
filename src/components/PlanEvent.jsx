@@ -3,7 +3,7 @@ import Text3DFlip from './ui/text-3d-flip';
 
 const EVENT_TYPES  = ['Wedding / Reception', 'Anand Karaj', 'Mehndi / Haldi / Sangeet', 'Birthday / Baby Shower', 'Religious / Festive Event', 'Other'];
 const FOOD_OPTIONS = ['Veg', 'Non-Veg', 'Both'];
-const SERVICE_OPTS = ['Decor & Catering', 'Decor only', 'Catering only'];
+const SERVICE_OPTS = ['Decorators & Catering', 'Decorators only', 'Catering only'];
 
 function ChipGroup({ options, value, onChange, groupLabel }) {
   return (
@@ -36,7 +36,7 @@ export default function PlanEvent() {
   const [eventType, setEventType] = useState('Wedding / Reception');
   const [guests,    setGuests]    = useState(350);
   const [food,      setFood]      = useState('Veg');
-  const [services,  setServices]  = useState('Decor & Catering');
+  const [services,  setServices]  = useState('Decorators & Catering');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -50,7 +50,7 @@ export default function PlanEvent() {
   const sendWhatsApp = useCallback(() => {
     const msg = [
       'Sat Sri Akal Jatinderpal ji (Sunny ji),',
-      'I would like to inquire about booking Sahib Decor & Catters for an event:',
+      'I would like to inquire about booking Sahib Decorators & Caterers for an event:',
       '',
       `• Event Type: ${eventType}`,
       `• Date: (Please share your preferred date)`,
@@ -80,8 +80,8 @@ export default function PlanEvent() {
         <div
           className="watermark-glide-right font-cinzel font-black whitespace-nowrap text-[5rem] sm:text-[8rem] lg:text-[10rem] text-sdc-teal leading-none"
         >
-          <span>SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS •&nbsp;</span>
-          <span>SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS •&nbsp;</span>
+          <span>SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS •&nbsp;</span>
+          <span>SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS • SAHIB DECORATORS &amp; CATERERS •&nbsp;</span>
         </div>
       </div>
 
@@ -198,7 +198,7 @@ export default function PlanEvent() {
               background: 'linear-gradient(135deg, #fb6b6e, #e0575c)',
               boxShadow: '0 8px 25px rgba(224,87,92,0.35)',
             }}
-            aria-label="Send enquiry on WhatsApp to Sahib Decor & Catters"
+            aria-label="Send enquiry on WhatsApp to Sahib Decorators & Caterers"
           >
             <span className="text-base sm:text-lg shrink-0">💬</span>
             <span className="whitespace-nowrap">Send Enquiry on WhatsApp</span>

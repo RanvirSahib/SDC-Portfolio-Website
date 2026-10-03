@@ -4,7 +4,7 @@ export const testimonials = [
     name: "Gurpreet Singh & Family",
     event: "Daughter's Grand Wedding & Reception",
     city: "Sarabha Nagar, Ludhiana",
-    quote: "Jatinderpal ji (Sunny ji) and the entire Sahib Decor & Catters team handled our daughter's wedding beyond expectations! The royal stage decor looked like a Maharaja palace, and the guests are still talking about the Dal Makhani, live chaat, and mutton biryani. Complete peace of mind!",
+    quote: "Jatinderpal ji (Sunny ji) and the entire Sahib Decorators & Caterers team handled our daughter's wedding beyond expectations! The royal stage decor looked like a Maharaja palace, and the guests are still talking about the Dal Makhani, live chaat, and mutton biryani. Complete peace of mind!",
     rating: 5
   },
   {

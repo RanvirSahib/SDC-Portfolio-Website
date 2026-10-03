@@ -12,7 +12,7 @@ export default function MobileActionDock() {
         id="dock-call-btn"
         className="flex-1 text-center py-3.5 rounded-full font-jakarta font-bold text-sdc-teal text-sm transition-all duration-200 active:scale-95 hover:opacity-90"
         style={{ background: 'linear-gradient(135deg, #fb6b6e, #e0575c)' }}
-        aria-label="Call Sahib Decor & Catters"
+        aria-label="Call Sahib Decorators & Caterers"
       >
         📞 Call
       </a>
@@ -25,7 +25,7 @@ export default function MobileActionDock() {
         rel="noopener noreferrer"
         className="flex-1 text-center py-3.5 rounded-full font-jakarta font-bold text-[#04210f] text-sm transition-all duration-200 active:scale-95 hover:opacity-90"
         style={{ background: '#25d366' }}
-        aria-label="WhatsApp Sahib Decor & Catters"
+        aria-label="WhatsApp Sahib Decorators & Caterers"
       >
         💬 WhatsApp
       </a>

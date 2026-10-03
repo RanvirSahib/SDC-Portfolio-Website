@@ -38,9 +38,9 @@ export const galleryItems = [
   },
   {
     id: 6,
-    title: "Sahib Decor & Catters Official Card",
+    title: "Sahib Decorators & Caterers Official Card",
     category: "All",
-    subtitle: "B-XIII, 1262/N2, Kot Alamgir, Opp. Civil Hospital, Ludhiana",
+    subtitle: "Near Dr. Gagandeep Hospital & Near Civil Hospital, Kot Alamgir, Ludhiana",
     image: "/assets/images/business-card.jpg"
   }
 ];
