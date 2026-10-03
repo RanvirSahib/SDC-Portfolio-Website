@@ -2,4 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.sahibdecorators.in/sitemap.xml
-Sitemap: https://sahibdecorators.in/sitemap.xml
