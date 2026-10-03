@@ -125,22 +125,16 @@ export default function Services() {
     );
     document.querySelectorAll('#services .rv').forEach((el) => observer.observe(el));
 
-    /* ── Horizontal Scroll Parallax ───────────────────────────── */
+    /* ── Subtle Section Header Parallax ───────────────────────────── */
     let rafId;
     const handleScroll = () => {
       if (!sectionRef.current) return;
       const rect = sectionRef.current.getBoundingClientRect();
       const inView = rect.top < window.innerHeight && rect.bottom > 0;
-      if (inView) {
-        // As user scrolls through the section, translate watermark horizontally
+      if (inView && headerRef.current) {
         const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-        const xOffset = (progress - 0.5) * -160; // moves horizontally by 160px
-        if (watermarkRef.current) {
-          watermarkRef.current.style.transform = `translate3d(${xOffset}px, 0, 0)`;
-        }
-        if (headerRef.current) {
-          headerRef.current.style.transform = `translate3d(${-xOffset * 0.15}px, 0, 0)`;
-        }
+        const xOffset = (progress - 0.5) * -24;
+        headerRef.current.style.transform = `translate3d(${xOffset}px, 0, 0)`;
       }
     };
 
@@ -166,17 +160,16 @@ export default function Services() {
       className="relative py-14 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-[5vw] max-w-[1200px] mx-auto overflow-hidden"
       aria-labelledby="services-heading"
     >
-      {/* ── Background Floating Parallax Watermark ─────────── */}
+      {/* ── Background Floating Horizontal Watermark ─────────── */}
       <div
-        className="absolute top-10 sm:top-14 left-0 right-0 pointer-events-none select-none overflow-hidden opacity-[0.06] -z-10 watermark-float"
+        className="absolute top-10 sm:top-14 left-0 right-0 pointer-events-none select-none overflow-hidden opacity-[0.06] -z-10"
         aria-hidden="true"
       >
         <div
-          ref={watermarkRef}
-          className="watermark-parallax font-cinzel font-black whitespace-nowrap text-[5rem] sm:text-[8rem] lg:text-[10rem] text-sdc-teal leading-none will-change-transform"
-          style={{ width: 'max-content' }}
+          className="watermark-glide-left font-cinzel font-black whitespace-nowrap text-[5rem] sm:text-[8rem] lg:text-[10rem] text-sdc-teal leading-none"
         >
-          SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS •
+          <span>SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS •&nbsp;</span>
+          <span>SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS •&nbsp;</span>
         </div>
       </div>
 

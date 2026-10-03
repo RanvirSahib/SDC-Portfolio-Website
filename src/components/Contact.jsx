@@ -36,14 +36,14 @@ export default function Contact() {
     >
       {/* ── Background Floating Horizontal Watermark ──────────────────────── */}
       <div
-        className="absolute top-10 left-0 right-0 pointer-events-none select-none overflow-hidden opacity-[0.06] -z-10 watermark-float"
+        className="absolute top-10 left-0 right-0 pointer-events-none select-none overflow-hidden opacity-[0.06] -z-10"
         aria-hidden="true"
       >
         <div
-          className="watermark-parallax font-cinzel font-black whitespace-nowrap text-[5rem] sm:text-[8rem] lg:text-[10rem] text-sdc-teal leading-none"
-          style={{ width: 'max-content' }}
+          className="watermark-glide-left font-cinzel font-black whitespace-nowrap text-[5rem] sm:text-[8rem] lg:text-[10rem] text-sdc-teal leading-none"
         >
-          SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS •
+          <span>SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS •&nbsp;</span>
+          <span>SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS • SAHIB DECOR &amp; CATTERS •&nbsp;</span>
         </div>
       </div>
       {/* ── Section Header ─────────────────────────────────────── */}

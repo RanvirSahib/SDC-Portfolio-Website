@@ -12,29 +12,6 @@ export default function ScrollProgress() {
       const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
       setWidth(Math.min(progress, 100));
 
-      // Parallax scroll for watermarks across sections
-      const windowHeight = window.innerHeight;
-      document.querySelectorAll('.watermark-parallax').forEach((el) => {
-        const parent = el.closest('section') || el.parentElement;
-        if (!parent) return;
-        const rect = parent.getBoundingClientRect();
-        if (rect.top < windowHeight && rect.bottom > 0) {
-          const sectionProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
-          const xOffset = (sectionProgress - 0.5) * -180;
-          el.style.transform = `translate3d(${xOffset}px, 0, 0)`;
-        }
-      });
-
-      document.querySelectorAll('.watermark-parallax-reverse').forEach((el) => {
-        const parent = el.closest('section') || el.parentElement;
-        if (!parent) return;
-        const rect = parent.getBoundingClientRect();
-        if (rect.top < windowHeight && rect.bottom > 0) {
-          const sectionProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
-          const xOffset = (sectionProgress - 0.5) * 180;
-          el.style.transform = `translate3d(${xOffset}px, 0, 0)`;
-        }
-      });
     };
 
     const onScroll = () => {

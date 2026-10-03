@@ -142,6 +142,39 @@
     transition: transform 0.12s linear;
   }
 
+  /* Horizontal Continuous Floating Background Watermark */
+  @keyframes watermarkGlideLeft {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @keyframes watermarkGlideRight {
+    0% {
+      transform: translate3d(-50%, 0, 0);
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .watermark-glide-left {
+    display: flex;
+    width: max-content;
+    animation: watermarkGlideLeft 68s linear infinite;
+    will-change: transform;
+  }
+
+  .watermark-glide-right {
+    display: flex;
+    width: max-content;
+    animation: watermarkGlideRight 75s linear infinite;
+    will-change: transform;
+  }
+
   /* Horizontal Floating Marquee */
   @keyframes marqueeFloatLeft {
     0% {
@@ -279,7 +312,6 @@
 @media (prefers-reduced-motion: reduce) {
   #loader-overlay { display: none !important; }
   .rv { opacity: 1 !important; transform: none !important; }
-  * { animation: none !important; transition: none !important; }
 }
 
 
