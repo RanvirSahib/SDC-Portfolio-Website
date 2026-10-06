@@ -327,7 +327,7 @@ function MenuSelectorPanel({ foodPref, selectedItems, onToggle, onClearAll, othe
 
       {/* Grouped Items */}
       <div
-        className="px-3 py-2 max-h-[380px] overflow-y-auto overscroll-contain"
+        className="px-3 pt-0 pb-2 max-h-[380px] overflow-y-auto overscroll-contain relative"
         style={{ scrollbarWidth: 'thin' }}
       >
         {Object.keys(grouped).length === 0 ? (
@@ -348,11 +348,12 @@ function MenuSelectorPanel({ foodPref, selectedItems, onToggle, onClearAll, othe
         ) : (
           Object.entries(grouped).map(([cat, items]) => (
             <div key={cat} className="mb-3">
-              <p className="font-montserrat font-bold text-[0.68rem] tracking-widest uppercase text-sdc-teal/80 px-1 py-1.5 sticky top-0 bg-gradient-to-r from-[#fffdf9] to-[#fff7ee] z-10">
-                {cat}
-                <span className="ml-1.5 font-normal text-sdc-mute/70">({items.length})</span>
-              </p>
-              <div className="grid grid-cols-1 gap-0.5">
+              <div className="sticky top-0 z-20 -mx-3 px-3 py-2 bg-[#fffdf9] border-b border-sdc-coral/20 shadow-xs flex items-center justify-between">
+                <span className="font-montserrat font-bold text-[0.72rem] tracking-widest uppercase text-sdc-teal">
+                  {cat}
+                </span>
+              </div>
+              <div className="grid grid-cols-1 gap-0.5 pt-1">
                 {items.map(item => (
                   <FoodItemCheckbox
                     key={item.id}
