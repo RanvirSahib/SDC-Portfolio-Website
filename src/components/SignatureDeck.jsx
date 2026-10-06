@@ -72,7 +72,7 @@ const DECK_CARDS = [
   },
 ];
 
-export default function SignatureDeck() {
+export default function SignatureDeck({ onOpenCateringMenu }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -326,7 +326,20 @@ export default function SignatureDeck() {
                   </div>
 
                   {/* Card Footer Action */}
-                  <div className="pt-2 border-t border-sdc-coral/10 shrink-0">
+                  <div className="pt-2 border-t border-sdc-coral/10 shrink-0 flex flex-col gap-2">
+                    {card.id === 'catering' && onOpenCateringMenu && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onOpenCateringMenu();
+                        }}
+                        className="w-full py-2.5 px-4 rounded-xl bg-white border border-sdc-coral/50 hover:bg-sdc-coral/10 text-sdc-teal hover:text-sdc-coral font-montserrat font-bold text-xs tracking-wide shadow-xs transition-all active:scale-95 flex items-center justify-center gap-1.5"
+                      >
+                        <span>📜</span>
+                        <span>View Full 300+ Royal Menu</span>
+                      </button>
+                    )}
                     <a
                       href={`https://wa.me/919888129647?text=${encodeURIComponent(card.whatsappQuery)}`}
                       target="_blank"

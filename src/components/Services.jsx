@@ -40,7 +40,7 @@ const SERVICES = [
   },
 ];
 
-function ServiceCard({ service, index, isLast }) {
+function ServiceCard({ service, index, isLast, onOpenCateringMenu }) {
   const cardRef = useRef(null);
 
   // 3D tilt — only on non-touch devices
@@ -109,11 +109,26 @@ function ServiceCard({ service, index, isLast }) {
       >
         {service.desc}
       </p>
+
+      {service.title === 'Food of Your Choice' && onOpenCateringMenu && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onOpenCateringMenu();
+          }}
+          className="mt-4 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-sdc-coral/10 hover:bg-sdc-coral text-sdc-coral hover:text-white font-montserrat font-bold text-xs transition-all shadow-xs active:scale-95 cursor-pointer"
+          style={{ transform: 'translateZ(25px)' }}
+        >
+          <span>📜 View 300+ Royal Menu</span>
+          <span>➔</span>
+        </button>
+      )}
     </div>
   );
 }
 
-export default function Services() {
+export default function Services({ onOpenCateringMenu }) {
   const sectionRef = useRef(null);
   const watermarkRef = useRef(null);
   const headerRef = useRef(null);
@@ -215,6 +230,7 @@ export default function Services() {
             service={service}
             index={i}
             isLast={i === SERVICES.length - 1}
+            onOpenCateringMenu={onOpenCateringMenu}
           />
         ))}
       </div>

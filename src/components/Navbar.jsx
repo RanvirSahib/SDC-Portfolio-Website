@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import logoSrc from '../assets/images/SDC.png';
 
-export default function Navbar() {
+export default function Navbar({ onOpenCateringMenu }) {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
@@ -124,6 +124,17 @@ export default function Navbar() {
 
         {/* Right CTA Actions */}
         <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+          {onOpenCateringMenu && (
+            <button
+              type="button"
+              onClick={onOpenCateringMenu}
+              className="hidden lg:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-sdc-coral/40 bg-white/80 hover:bg-sdc-coral hover:text-white text-sdc-teal font-montserrat font-bold text-xs tracking-wide shadow-xs transition-all hover:scale-105 active:scale-95 cursor-pointer"
+            >
+              <span>🍽️</span>
+              <span>Royal Menu (300+)</span>
+            </button>
+          )}
+
           <a
             href="tel:+919888129647"
             id="navbar-call-btn"
@@ -198,6 +209,25 @@ export default function Navbar() {
                 </a>
               );
             })}
+
+            {onOpenCateringMenu && (
+              <button
+                type="button"
+                onClick={() => {
+                  setMenuOpen(false);
+                  onOpenCateringMenu();
+                }}
+                className="flex items-center justify-between px-4 py-3 rounded-2xl bg-sdc-coral/10 border border-sdc-coral/30 text-sdc-teal font-inter text-sm font-bold hover:bg-sdc-coral hover:text-white transition-all text-left mt-1 cursor-pointer"
+              >
+                <span className="flex items-center gap-2">
+                  <span>🍽️</span>
+                  <span>Royal Catering Menu (300+ Dishes)</span>
+                </span>
+                <span className="text-xs bg-sdc-coral/20 px-2 py-0.5 rounded-full text-sdc-coral">
+                  Explore
+                </span>
+              </button>
+            )}
           </div>
         </div>
       )}

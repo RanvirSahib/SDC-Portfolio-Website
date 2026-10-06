@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo, useRef, Component } from 'react';
 import Text3DFlip from './ui/text-3d-flip';
-import { vegMenuItems, nonVegMenuItems } from '../data/menuData';
+import { vegMenuItems, nonVegMenuItems, menuCategories } from '../data/menuData';
 import LocationPickerModal from './LocationPickerModal';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -176,8 +176,9 @@ function FoodItemCheckbox({ item, checked, onToggle, type }) {
 // ─────────────────────────────────────────────────────────────────────────────
 // Menu Selector Panel
 // ─────────────────────────────────────────────────────────────────────────────
-function MenuSelectorPanel({ foodPref, selectedItems, onToggle, onClearAll, otherFood, onOtherChange }) {
+function MenuSelectorPanel({ foodPref, selectedItems, onToggle, onClearAll, otherFood, onOtherChange, onOpenFullMenu }) {
   const [search, setSearch] = useState('');
+  const [selectedCat, setSelectedCat] = useState('all');
   const searchRef = useRef(null);
 
   const showVeg    = foodPref === 'Veg'     || foodPref === 'Both';
@@ -191,14 +192,21 @@ function MenuSelectorPanel({ foodPref, selectedItems, onToggle, onClearAll, othe
   }, [showVeg, showNonVeg]);
 
   const filtered = useMemo(() => {
+    let list = allItems;
+    if (selectedCat !== 'all') {
+      const catObj = menuCategories.find(c => c.id === selectedCat);
+      if (catObj) {
+        list = list.filter(i => i.category === catObj.label);
+      }
+    }
     const q = search.trim().toLowerCase();
-    if (!q) return allItems;
-    return allItems.filter(i =>
+    if (!q) return list;
+    return list.filter(i =>
       i.name.toLowerCase().includes(q) ||
       i.category.toLowerCase().includes(q) ||
       (i.desc && i.desc.toLowerCase().includes(q))
     );
-  }, [allItems, search]);
+  }, [allItems, selectedCat, search]);
 
   const grouped = useMemo(() => {
     return filtered.reduce((acc, item) => {
@@ -211,7 +219,14 @@ function MenuSelectorPanel({ foodPref, selectedItems, onToggle, onClearAll, othe
   const selectedCount = selectedItems.size;
   const totalCount    = allItems.length;
 
-  // clearAll is passed from parent — directly resets the Set in one state update
+  const availableCategories = useMemo(() => {
+    return menuCategories.filter(cat => {
+      if (cat.id === 'all') return true;
+      if (foodPref === 'Veg' && cat.type === 'non-veg') return false;
+      if (foodPref === 'Non-Veg' && cat.type === 'veg') return false;
+      return true;
+    });
+  }, [foodPref]);
 
   return (
     <div
@@ -230,22 +245,33 @@ function MenuSelectorPanel({ foodPref, selectedItems, onToggle, onClearAll, othe
           <p className="font-poppins text-sdc-mute text-[0.7rem] mt-0.5">
             {selectedCount > 0
               ? <span className="text-sdc-coral font-semibold">{selectedCount} item{selectedCount > 1 ? 's' : ''} selected</span>
-              : `Select from ${totalCount} available dishes`}
+              : `Select from ${totalCount} available royal dishes`}
           </p>
         </div>
-        {selectedCount > 0 && (
-          <button
-            type="button"
-            onClick={onClearAll}
-            className="text-[0.7rem] font-montserrat font-bold text-sdc-mute hover:text-sdc-coral transition-colors px-2 py-1 rounded-lg hover:bg-sdc-coral/10"
-          >
-            Clear all
-          </button>
-        )}
+        <div className="flex items-center gap-2">
+          {onOpenFullMenu && (
+            <button
+              type="button"
+              onClick={onOpenFullMenu}
+              className="text-[0.68rem] font-montserrat font-bold text-sdc-teal hover:text-sdc-coral transition-colors px-2.5 py-1 rounded-lg bg-white border border-sdc-coral/30 hover:border-sdc-coral shadow-xs"
+            >
+              📖 View Full Menu Book
+            </button>
+          )}
+          {selectedCount > 0 && (
+            <button
+              type="button"
+              onClick={onClearAll}
+              className="text-[0.7rem] font-montserrat font-bold text-sdc-mute hover:text-sdc-coral transition-colors px-2 py-1 rounded-lg hover:bg-sdc-coral/10"
+            >
+              Clear all
+            </button>
+          )}
+        </div>
       </div>
 
-      {/* Search Bar */}
-      <div className="px-4 py-3 border-b border-sdc-coral/10">
+      {/* Search Bar & Category Filters */}
+      <div className="px-4 py-3 border-b border-sdc-coral/10 bg-white/60">
         <div className="relative">
           <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sdc-mute text-sm pointer-events-none">🔍</span>
           <input
@@ -253,7 +279,7 @@ function MenuSelectorPanel({ foodPref, selectedItems, onToggle, onClearAll, othe
             type="text"
             value={search}
             onChange={e => setSearch(e.target.value)}
-            placeholder={`Search ${foodPref === 'Both' ? 'veg & non-veg' : foodPref.toLowerCase()} dishes…`}
+            placeholder={`Search ${foodPref === 'Both' ? 'veg & non-veg' : foodPref.toLowerCase()} dishes (e.g. Tikki, Paneer, Kulcha)...`}
             className="w-full pl-9 pr-8 py-2 rounded-xl border border-sdc-coral/25 bg-white font-poppins text-sdc-ink text-sm
               placeholder:text-sdc-mute/60 focus:outline-none focus:border-sdc-coral focus:ring-1 focus:ring-sdc-coral/30 transition-all"
           />
@@ -267,6 +293,29 @@ function MenuSelectorPanel({ foodPref, selectedItems, onToggle, onClearAll, othe
             </button>
           )}
         </div>
+
+        {/* Category Pills */}
+        <div className="mt-2.5 flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+          {availableCategories.map(cat => {
+            const isSelected = selectedCat === cat.id;
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setSelectedCat(cat.id)}
+                className={`whitespace-nowrap px-2.5 py-1 rounded-full font-montserrat text-[0.68rem] font-bold flex items-center gap-1 transition-all shrink-0 ${
+                  isSelected
+                    ? 'bg-sdc-coral text-white shadow-xs'
+                    : 'bg-white border border-sdc-coral/20 text-sdc-ink hover:text-sdc-coral'
+                }`}
+              >
+                <span>{cat.icon}</span>
+                <span>{cat.label}</span>
+              </button>
+            );
+          })}
+        </div>
+
         {search && (
           <p className="font-poppins text-sdc-mute text-[0.68rem] mt-1.5">
             {filtered.length === 0
@@ -282,9 +331,20 @@ function MenuSelectorPanel({ foodPref, selectedItems, onToggle, onClearAll, othe
         style={{ scrollbarWidth: 'thin' }}
       >
         {Object.keys(grouped).length === 0 ? (
-          <p className="text-center font-poppins text-sdc-mute text-sm py-8">
-            No dishes match &ldquo;{search}&rdquo;
-          </p>
+          <div className="text-center py-8">
+            <p className="font-poppins text-sdc-mute text-sm">
+              No dishes match &ldquo;{search}&rdquo;
+            </p>
+            {selectedCat !== 'all' && (
+              <button
+                type="button"
+                onClick={() => setSelectedCat('all')}
+                className="mt-2 text-xs font-montserrat font-bold text-sdc-coral underline"
+              >
+                Show all categories
+              </button>
+            )}
+          </div>
         ) : (
           Object.entries(grouped).map(([cat, items]) => (
             <div key={cat} className="mb-3">
@@ -320,7 +380,7 @@ function MenuSelectorPanel({ foodPref, selectedItems, onToggle, onClearAll, othe
           id="other-food-input"
           value={otherFood}
           onChange={e => onOtherChange(e.target.value)}
-          placeholder="Mention any dish not listed above — e.g. Chana Bhatura, Pav Bhaji, specific family recipe, dietary restrictions…"
+          placeholder="Mention any dish not listed above — e.g. specific family recipe, Jain preparation, live counter request, dietary requirements…"
           rows={2}
           className="w-full px-3 py-2 rounded-xl border border-sdc-coral/25 bg-white font-poppins text-sdc-ink text-sm
             placeholder:text-sdc-mute/50 focus:outline-none focus:border-sdc-coral focus:ring-1 focus:ring-sdc-coral/30 transition-all resize-none"
@@ -333,7 +393,7 @@ function MenuSelectorPanel({ foodPref, selectedItems, onToggle, onClearAll, othe
 // ─────────────────────────────────────────────────────────────────────────────
 // PlanEvent Content component
 // ─────────────────────────────────────────────────────────────────────────────
-function PlanEventContent() {
+function PlanEventContent({ onOpenCateringMenu }) {
   const [personName,     setPersonName]     = useState('');
   const [eventTypes,     setEventTypes]     = useState([]); // Starts empty — user must select
   const [otherEventType, setOtherEventType] = useState('');
@@ -1033,6 +1093,7 @@ function PlanEventContent() {
                   onClearAll={handleClearAll}
                   otherFood={otherFood}
                   onOtherChange={setOtherFood}
+                  onOpenFullMenu={onOpenCateringMenu}
                 />
               </div>
             )}
@@ -1083,10 +1144,10 @@ function PlanEventContent() {
 // ─────────────────────────────────────────────────────────────────────────────
 // Default export wrapped in Error Boundary
 // ─────────────────────────────────────────────────────────────────────────────
-export default function PlanEvent() {
+export default function PlanEvent({ onOpenCateringMenu }) {
   return (
     <PlanEventErrorBoundary>
-      <PlanEventContent />
+      <PlanEventContent onOpenCateringMenu={onOpenCateringMenu} />
     </PlanEventErrorBoundary>
   );
 }
