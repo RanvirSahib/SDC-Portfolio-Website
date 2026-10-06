@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef, Component } from 'react';
 import Text3DFlip from './ui/text-3d-flip';
 import { vegMenuItems, nonVegMenuItems } from '../data/menuData';
+import LocationPickerModal from './LocationPickerModal';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Error Boundary — prevents a crash in the menu from blanking the whole page
@@ -338,6 +339,10 @@ function PlanEventContent() {
   const [otherEventType, setOtherEventType] = useState('');
   const [eventDate,      setEventDate]      = useState('');
   const [location,       setLocation]       = useState('');
+  const [mapCoords,      setMapCoords]      = useState(null);
+  const [isMapOpen,      setIsMapOpen]      = useState(false);
+  const [isQuickLocating,setIsQuickLocating]= useState(false);
+  const [locationNotice, setLocationNotice] = useState('');
   const [guests,         setGuests]         = useState(350);
   const [food,           setFood]           = useState(''); // Starts empty — chosen by user
   const [services,       setServices]       = useState(''); // Starts empty — chosen by user
@@ -387,9 +392,76 @@ function PlanEventContent() {
 
   const handleLocationChange = (val) => {
     setLocation(val);
+    setMapCoords(null);
     if (errors.location && val.trim()) {
       setErrors(prev => ({ ...prev, location: undefined }));
     }
+  };
+
+  const handleLocationConfirm = ({ location: confirmedLoc, coords }) => {
+    setLocation(confirmedLoc);
+    setMapCoords(coords);
+    setLocationNotice('Location pinned on map ✓');
+    setTimeout(() => setLocationNotice(''), 4000);
+    if (errors.location) {
+      setErrors(prev => ({ ...prev, location: undefined }));
+    }
+  };
+
+  const handleQuickCurrentLocation = () => {
+    if (!navigator.geolocation) {
+      alert('Geolocation is not supported by your browser.');
+      return;
+    }
+    setIsQuickLocating(true);
+    setLocationNotice('Detecting GPS location…');
+
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        setIsQuickLocating(false);
+        const { latitude, longitude } = pos.coords;
+        const coords = { lat: latitude, lng: longitude };
+        setMapCoords(coords);
+
+        try {
+          const res = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`,
+            { headers: { 'Accept-Language': 'en' } }
+          );
+          if (res.ok) {
+            const data = await res.json();
+            const addr = data.address || {};
+            const parts = [
+              addr.amenity || addr.building || addr.hotel || addr.tourism || data.name,
+              addr.road || addr.suburb || addr.neighbourhood,
+              addr.city || addr.town || addr.village || addr.county || 'Ludhiana',
+              addr.state || 'Punjab',
+            ].filter(Boolean);
+            const cleanParts = Array.from(new Set(parts));
+            const formatted = cleanParts.length > 0 ? cleanParts.join(', ') : `Lat: ${latitude.toFixed(4)}, Lng: ${longitude.toFixed(4)}`;
+            setLocation(formatted);
+          } else {
+            setLocation(`Current Location (${latitude.toFixed(4)}, ${longitude.toFixed(4)})`);
+          }
+        } catch {
+          setLocation(`Current Location (${latitude.toFixed(4)}, ${longitude.toFixed(4)})`);
+        }
+        setLocationNotice('Current location detected ✓');
+        setTimeout(() => setLocationNotice(''), 4000);
+
+        if (errors.location) {
+          setErrors(prev => ({ ...prev, location: undefined }));
+        }
+      },
+      (err) => {
+        setIsQuickLocating(false);
+        let msg = 'Could not detect your current location.';
+        if (err.code === 1) msg = 'Location permission denied by browser.';
+        setLocationNotice(msg);
+        setTimeout(() => setLocationNotice(''), 4000);
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 }
+    );
   };
 
   const handleServicesChange = (val) => {
@@ -526,11 +598,12 @@ function PlanEventContent() {
     const eventTypeLabel = resolvedEventTypes.length > 1 ? 'Event Types' : 'Event Type';
 
     // ── Section 1: Event Details ──────────────────────────────────────────
+    const mapUrl = mapCoords ? ` (📍 Map: https://maps.google.com/?q=${mapCoords.lat},${mapCoords.lng})` : '';
     const eventDetails = [
       `• Name        : ${name}`,
       `• ${eventTypeLabel} : ${eventTypeStr}`,
       `• Date       : ${formattedDate}`,
-      `• Location   : ${loc}`,
+      `• Location   : ${loc}${mapUrl}`,
       `• Guest Count: ${guests} Guests`,
       `• Services   : ${services}`,
     ];
@@ -775,13 +848,20 @@ function PlanEventContent() {
 
             {/* Event Location / Venue */}
             <div>
-              <label
-                htmlFor="event-location-input"
-                className="font-montserrat text-sdc-teal text-xs tracking-wider uppercase font-bold mb-2 flex items-center gap-1"
-              >
-                <span>📍 Location / Venue</span>
-                <span className="text-red-500 font-bold">*</span>
-              </label>
+              <div className="flex items-center justify-between mb-2">
+                <label
+                  htmlFor="event-location-input"
+                  className="font-montserrat text-sdc-teal text-xs tracking-wider uppercase font-bold flex items-center gap-1"
+                >
+                  <span>📍 Location / Venue</span>
+                  <span className="text-red-500 font-bold">*</span>
+                </label>
+                {mapCoords && (
+                  <span className="text-[0.66rem] font-montserrat font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 flex items-center gap-1">
+                    <span>✓</span> Pinned
+                  </span>
+                )}
+              </div>
               <div className="relative">
                 <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-sdc-mute/70 text-base pointer-events-none select-none">📍</span>
                 <input
@@ -790,7 +870,7 @@ function PlanEventContent() {
                   value={location}
                   onChange={e => handleLocationChange(e.target.value)}
                   placeholder="e.g. Ludhiana, Grand City Resort…"
-                  maxLength={80}
+                  maxLength={120}
                   className={`w-full pl-10 pr-4 py-2.5 rounded-xl border bg-white font-poppins text-sdc-ink text-sm
                     placeholder:text-sdc-mute/50 focus:outline-none transition-all ${
                       errors.location
@@ -799,6 +879,34 @@ function PlanEventContent() {
                     }`}
                 />
               </div>
+
+              {/* Quick Action Map & Current Location Buttons */}
+              <div className="flex flex-wrap items-center gap-2 mt-2">
+                <button
+                  type="button"
+                  onClick={() => setIsMapOpen(true)}
+                  className="px-2.5 py-1.5 rounded-lg border border-sdc-coral/40 bg-sdc-coral/10 hover:bg-sdc-coral/20 text-sdc-coral font-montserrat font-bold text-[0.72rem] flex items-center gap-1.5 transition-all active:scale-95 shadow-sm"
+                >
+                  <span>🗺️</span>
+                  <span>Locate on Map</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={handleQuickCurrentLocation}
+                  disabled={isQuickLocating}
+                  className="px-2.5 py-1.5 rounded-lg border border-sdc-coral/30 bg-white hover:bg-sdc-coral/10 text-sdc-ink font-montserrat font-bold text-[0.72rem] flex items-center gap-1.5 transition-all active:scale-95 shadow-sm"
+                >
+                  <span className={isQuickLocating ? 'animate-spin' : ''}>🎯</span>
+                  <span>{isQuickLocating ? 'Detecting GPS…' : 'Use Current Location'}</span>
+                </button>
+              </div>
+
+              {locationNotice && (
+                <p className="text-sdc-teal font-poppins text-[0.7rem] mt-1.5 font-medium flex items-center gap-1">
+                  <span>ℹ️</span> {locationNotice}
+                </p>
+              )}
+
               {errors.location && (
                 <p className="text-red-500 font-poppins text-[0.72rem] mt-1.5 flex items-center gap-1 font-medium">
                   <span>⚠️</span> {errors.location}
@@ -941,6 +1049,15 @@ function PlanEventContent() {
           </button>
         </div>
       </div>
+
+      {/* Location Picker Modal */}
+      <LocationPickerModal
+        isOpen={isMapOpen}
+        onClose={() => setIsMapOpen(false)}
+        initialLocation={location}
+        initialCoords={mapCoords}
+        onConfirm={handleLocationConfirm}
+      />
     </section>
   );
 }
