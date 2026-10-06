@@ -120,7 +120,7 @@ function ServiceCard({ service, index, isLast, onOpenCateringMenu }) {
           className="mt-4 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-sdc-coral/10 hover:bg-sdc-coral text-sdc-coral hover:text-white font-montserrat font-bold text-xs transition-all shadow-xs active:scale-95 cursor-pointer"
           style={{ transform: 'translateZ(25px)' }}
         >
-          <span>📜 View 300+ Royal Menu</span>
+          <span>📜 View Royal Catering Menu</span>
           <span>➔</span>
         </button>
       )}

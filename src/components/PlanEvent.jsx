@@ -245,7 +245,7 @@ function MenuSelectorPanel({ foodPref, selectedItems, onToggle, onClearAll, othe
           <p className="font-poppins text-sdc-mute text-[0.7rem] mt-0.5">
             {selectedCount > 0
               ? <span className="text-sdc-coral font-semibold">{selectedCount} item{selectedCount > 1 ? 's' : ''} selected</span>
-              : `Select from ${totalCount} available royal dishes`}
+              : 'Select from our royal catering dishes'}
           </p>
         </div>
         <div className="flex items-center gap-2">

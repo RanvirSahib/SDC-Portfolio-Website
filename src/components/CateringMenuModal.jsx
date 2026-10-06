@@ -119,10 +119,10 @@ export default function CateringMenuModal({ isOpen, onClose, onOpenPlanEvent }) 
         >
           <div className="flex items-start justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sdc-coral/10 border border-sdc-coral/30 mb-2">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sdc-coral/10 border border-sdc-coral/30 mb-2">
                 <span className="text-sdc-coral text-xs">👑</span>
-                <span className="font-montserrat font-bold text-[0.7rem] uppercase tracking-wider text-sdc-teal">
-                  Authentic Punjabi Catering &bull; Shahi Zaika
+                <span className="font-montserrat font-bold text-[0.68rem] sm:text-[0.7rem] uppercase tracking-wider text-sdc-teal whitespace-nowrap">
+                  Royal Punjabi Catering
                 </span>
               </div>
               <h2
@@ -132,7 +132,7 @@ export default function CateringMenuModal({ isOpen, onClose, onOpenPlanEvent }) 
                 Sahib Official Catering Menu
               </h2>
               <p className="font-poppins text-sdc-mute text-xs sm:text-sm mt-1">
-                Explore over <strong className="text-sdc-coral font-semibold">300+ authentic delicacies</strong> prepared fresh for weddings and royal banquets.
+                Explore our authentic Punjabi delicacies prepared fresh for weddings and royal banquets.
               </p>
             </div>
 
@@ -171,47 +171,47 @@ export default function CateringMenuModal({ isOpen, onClose, onOpenPlanEvent }) 
               )}
             </div>
 
-            {/* Diet Filter Chips */}
-            <div className="flex items-center gap-1.5 p-1 bg-white/80 border border-sdc-coral/25 rounded-xl shrink-0 self-start sm:self-auto shadow-xs">
+            {/* Diet Filter Chips (Equal width grid on mobile, no numbers) */}
+            <div className="grid grid-cols-3 sm:flex items-center gap-1 p-1 bg-white/90 border border-sdc-coral/25 rounded-xl w-full sm:w-auto shrink-0 shadow-xs">
               <button
                 type="button"
                 onClick={() => setDietFilter('all')}
-                className={`px-3 py-1.5 rounded-lg font-montserrat font-bold text-xs transition-all ${
+                className={`px-3 py-2 rounded-lg font-montserrat font-bold text-xs text-center transition-all ${
                   dietFilter === 'all'
                     ? 'bg-sdc-teal text-white shadow-xs'
                     : 'text-sdc-mute hover:text-sdc-teal'
                 }`}
               >
-                All Dishes ({allDishes.length})
+                All Dishes
               </button>
               <button
                 type="button"
                 onClick={() => setDietFilter('veg')}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-montserrat font-bold text-xs transition-all ${
+                className={`flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg font-montserrat font-bold text-xs text-center transition-all ${
                   dietFilter === 'veg'
                     ? 'bg-[#1b7938] text-white shadow-xs'
                     : 'text-sdc-mute hover:text-[#1b7938]'
                 }`}
               >
-                <span className="w-2 h-2 rounded-full bg-[#27ae60] inline-block"></span>
-                Pure Veg ({vegMenuItems.length})
+                <span className="w-2 h-2 rounded-full bg-[#27ae60] shrink-0 inline-block"></span>
+                <span>Pure Veg</span>
               </button>
               <button
                 type="button"
                 onClick={() => setDietFilter('non-veg')}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-montserrat font-bold text-xs transition-all ${
+                className={`flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg font-montserrat font-bold text-xs text-center transition-all ${
                   dietFilter === 'non-veg'
                     ? 'bg-[#b33939] text-white shadow-xs'
                     : 'text-sdc-mute hover:text-[#b33939]'
                 }`}
               >
-                <span className="w-2 h-2 rounded-full bg-[#e74c3c] inline-block"></span>
-                Non-Veg ({nonVegMenuItems.length})
+                <span className="w-2 h-2 rounded-full bg-[#e74c3c] shrink-0 inline-block"></span>
+                <span>Non-Veg</span>
               </button>
             </div>
           </div>
 
-          {/* ── Category Horizontal Scrollable Tabs ───────────────── */}
+          {/* ── Category Horizontal Scrollable Tabs (Clean pills without numbers) ── */}
           <div className="mt-3.5 flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
             {menuCategories
               .filter(cat => {
@@ -238,11 +238,6 @@ export default function CateringMenuModal({ isOpen, onClose, onOpenPlanEvent }) 
                   >
                     <span>{cat.icon}</span>
                     <span>{cat.label}</span>
-                    <span className={`text-[0.65rem] px-1.5 py-0.2 rounded-full ${
-                      isSelected ? 'bg-white/20 text-white' : 'bg-sdc-coral/10 text-sdc-coral'
-                    }`}>
-                      {count}
-                    </span>
                   </button>
                 );
               })}
@@ -271,11 +266,8 @@ export default function CateringMenuModal({ isOpen, onClose, onOpenPlanEvent }) 
               <div key={categoryName} className="scroll-mt-6">
                 {/* Section Header */}
                 <div className="flex items-center gap-3 mb-3.5 pb-2 border-b border-sdc-coral/15">
-                  <h3 className="font-playfair font-bold text-sdc-coral text-base sm:text-lg flex items-center gap-2">
-                    <span>{categoryName}</span>
-                    <span className="font-poppins text-xs font-normal text-sdc-mute">
-                      ({dishes.length} dish{dishes.length !== 1 ? 'es' : ''})
-                    </span>
+                  <h3 className="font-playfair font-bold text-sdc-coral text-base sm:text-lg">
+                    {categoryName}
                   </h3>
                 </div>
 
@@ -321,14 +313,14 @@ export default function CateringMenuModal({ isOpen, onClose, onOpenPlanEvent }) 
 
         {/* ── Modal Footer ────────────────────────────────────────── */}
         <div
-          className="px-5 sm:px-8 py-3.5 border-t border-sdc-coral/20 shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3"
+          className="px-4 sm:px-8 py-3 sm:py-3.5 border-t border-sdc-coral/20 shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3"
           style={{ background: 'linear-gradient(90deg, #fff7ee 0%, #fffdf9 100%)' }}
         >
           <div className="text-center sm:text-left">
             <p className="font-montserrat font-bold text-sdc-teal text-xs">
-              Showing {filteredDishes.length} of {allDishes.length} Authentic Dishes
+              Authentic Royal Punjabi Catering
             </p>
-            <p className="font-poppins text-sdc-mute text-[0.7rem]">
+            <p className="font-poppins text-sdc-mute text-[0.7rem] hidden sm:block">
               Full culinary customisation &bull; Live master chef counters available for all occasions
             </p>
           </div>
@@ -338,16 +330,18 @@ export default function CateringMenuModal({ isOpen, onClose, onOpenPlanEvent }) 
               href="https://wa.me/919888129647?text=Hello%20Sunny%20Ji%2C%20I%20reviewed%20your%20catering%20menu%20on%20the%20website%20and%20would%20like%20to%20discuss%20a%20catering%20package."
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 sm:flex-none px-4 py-2.5 rounded-full border border-sdc-coral/40 text-sdc-teal hover:border-sdc-coral hover:bg-sdc-coral/10 font-montserrat font-bold text-xs uppercase tracking-wider text-center transition-all shadow-xs"
+              className="flex-1 sm:flex-none h-11 px-4 rounded-xl sm:rounded-full border border-sdc-coral/40 text-sdc-teal hover:border-sdc-coral hover:bg-sdc-coral/10 font-montserrat font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 whitespace-nowrap transition-all shadow-xs"
             >
-              💬 WhatsApp Sunny Ji
+              <span>💬</span>
+              <span>WhatsApp</span>
             </a>
             <button
               type="button"
               onClick={handleBookWithMenu}
-              className="flex-1 sm:flex-none px-6 py-2.5 rounded-full bg-gradient-to-r from-[#fb6b6e] to-[#e0575c] text-white font-montserrat font-bold text-xs uppercase tracking-wider text-center hover:shadow-lg hover:-translate-y-0.5 active:scale-95 transition-all shadow-md"
+              className="flex-1 sm:flex-none h-11 px-5 rounded-xl sm:rounded-full bg-gradient-to-r from-[#fb6b6e] to-[#e0575c] text-white font-montserrat font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 whitespace-nowrap hover:shadow-lg hover:-translate-y-0.5 active:scale-95 transition-all shadow-md"
             >
-              ✨ Plan Event With This Menu
+              <span>✨</span>
+              <span>Plan Event</span>
             </button>
           </div>
         </div>

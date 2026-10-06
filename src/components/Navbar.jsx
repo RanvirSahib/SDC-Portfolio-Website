@@ -131,7 +131,7 @@ export default function Navbar({ onOpenCateringMenu }) {
               className="hidden lg:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-sdc-coral/40 bg-white/80 hover:bg-sdc-coral hover:text-white text-sdc-teal font-montserrat font-bold text-xs tracking-wide shadow-xs transition-all hover:scale-105 active:scale-95 cursor-pointer"
             >
               <span>🍽️</span>
-              <span>Royal Menu (300+)</span>
+              <span>Royal Menu</span>
             </button>
           )}
 
@@ -221,7 +221,7 @@ export default function Navbar({ onOpenCateringMenu }) {
               >
                 <span className="flex items-center gap-2">
                   <span>🍽️</span>
-                  <span>Royal Catering Menu (300+ Dishes)</span>
+                  <span>Royal Catering Menu</span>
                 </span>
                 <span className="text-xs bg-sdc-coral/20 px-2 py-0.5 rounded-full text-sdc-coral">
                   Explore

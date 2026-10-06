@@ -337,7 +337,7 @@ export default function SignatureDeck({ onOpenCateringMenu }) {
                         className="w-full py-2.5 px-4 rounded-xl bg-white border border-sdc-coral/50 hover:bg-sdc-coral/10 text-sdc-teal hover:text-sdc-coral font-montserrat font-bold text-xs tracking-wide shadow-xs transition-all active:scale-95 flex items-center justify-center gap-1.5"
                       >
                         <span>📜</span>
-                        <span>View Full 300+ Royal Menu</span>
+                        <span>View Royal Catering Menu</span>
                       </button>
                     )}
                     <a
