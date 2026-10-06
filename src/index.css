@@ -89,6 +89,12 @@
     transform: scale(1);
   }
 
+  /* Safety override: Plan section must always stay visible during user interactions */
+  #plan .rv, #plan .rv-scale, #plan .rv-left, #plan .rv-right {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
   /* Parallax & Floating Watermark Text */
   @keyframes watermarkFloat {
     0% {
