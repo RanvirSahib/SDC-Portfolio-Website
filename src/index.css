@@ -95,6 +95,13 @@
     transform: none !important;
   }
 
+  /* Mobile date input overflow prevention */
+  input[type="date"] {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    min-width: 0 !important;
+  }
+
   /* Parallax & Floating Watermark Text */
   @keyframes watermarkFloat {
     0% {

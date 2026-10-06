@@ -424,24 +424,35 @@ function PlanEventContent() {
         setMapCoords(coords);
 
         try {
-          const res = await fetch(
-            `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`,
-            { headers: { 'Accept-Language': 'en' } }
-          );
+          const res = await fetch(`https://photon.komoot.io/reverse?lat=${latitude}&lon=${longitude}`);
           if (res.ok) {
             const data = await res.json();
-            const addr = data.address || {};
-            const parts = [
-              addr.amenity || addr.building || addr.hotel || addr.tourism || data.name,
-              addr.road || addr.suburb || addr.neighbourhood,
-              addr.city || addr.town || addr.village || addr.county || 'Ludhiana',
-              addr.state || 'Punjab',
-            ].filter(Boolean);
-            const cleanParts = Array.from(new Set(parts));
-            const formatted = cleanParts.length > 0 ? cleanParts.join(', ') : `Lat: ${latitude.toFixed(4)}, Lng: ${longitude.toFixed(4)}`;
-            setLocation(formatted);
+            if (data.features && data.features.length > 0) {
+              const p = data.features[0].properties || {};
+              const parts = [
+                p.name,
+                p.street,
+                p.district || p.suburb,
+                p.city || p.county,
+                p.state || 'Punjab',
+              ].filter(Boolean);
+              const cleanParts = Array.from(new Set(parts));
+              if (cleanParts.length > 0) {
+                setLocation(cleanParts.join(', '));
+              } else {
+                setLocation(`Current Location (${latitude.toFixed(4)}, ${longitude.toFixed(4)})`);
+              }
+            } else {
+              setLocation(`Current Location (${latitude.toFixed(4)}, ${longitude.toFixed(4)})`);
+            }
           } else {
-            setLocation(`Current Location (${latitude.toFixed(4)}, ${longitude.toFixed(4)})`);
+            // BigDataCloud fallback
+            const res2 = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`);
+            if (res2.ok) {
+              const d = await res2.json();
+              const parts = [d.locality, d.city, d.principalSubdivision].filter(Boolean);
+              setLocation(parts.join(', ') || `Current Location (${latitude.toFixed(4)}, ${longitude.toFixed(4)})`);
+            }
           }
         } catch {
           setLocation(`Current Location (${latitude.toFixed(4)}, ${longitude.toFixed(4)})`);
@@ -814,9 +825,9 @@ function PlanEventContent() {
           </div>
 
           {/* Event Date & Location / Venue (Required) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6 min-w-0 w-full">
             {/* Event Date */}
-            <div>
+            <div className="min-w-0 w-full">
               <label
                 htmlFor="event-date-input"
                 className="font-montserrat text-sdc-teal text-xs tracking-wider uppercase font-bold mb-2 flex items-center gap-1"
@@ -824,19 +835,26 @@ function PlanEventContent() {
                 <span>📅 Event Date</span>
                 <span className="text-red-500 font-bold">*</span>
               </label>
-              <div className="relative">
+              <div className="relative min-w-0 w-full">
                 <input
                   id="event-date-input"
                   type="date"
                   min={new Date().toISOString().split('T')[0]}
                   value={eventDate}
                   onChange={e => handleDateChange(e.target.value)}
-                  className={`w-full px-3.5 py-2.5 rounded-xl border bg-white font-poppins text-sdc-ink text-sm
+                  className={`w-full min-w-0 max-w-full box-border block px-3.5 py-2.5 rounded-xl border bg-white font-poppins text-sdc-ink text-sm
                     focus:outline-none transition-all cursor-pointer ${
                       errors.eventDate
                         ? 'border-red-500 ring-2 ring-red-400/25 bg-red-50/20'
                         : 'border-sdc-coral/30 focus:border-sdc-coral focus:ring-2 focus:ring-sdc-coral/20'
                     }`}
+                  style={{
+                    maxWidth: '100%',
+                    boxSizing: 'border-box',
+                    WebkitAppearance: 'none',
+                    MozAppearance: 'none',
+                    appearance: 'none',
+                  }}
                 />
               </div>
               {errors.eventDate && (
