@@ -27,7 +27,7 @@ export default function Footer() {
 
       {/* Copyright */}
       <p className="font-poppins text-sdc-mute text-xs">
-        &copy; {year} Sahib Decorators &amp; Caterers (SDC) &middot; Ludhiana, Punjab
+        &copy; {year} Sahib Decorators &amp; Caterers (Sahib Tent House) &middot; Ludhiana, Punjab
       </p>
 
       {/* Social and Contact Links with Brand Logos */}

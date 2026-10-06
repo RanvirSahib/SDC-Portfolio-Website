@@ -67,9 +67,8 @@ export default function About() {
             <strong className="text-sdc-ink font-semibold">
               Jatinderpal Singh (Sunny Singh)
             </strong>
-            , Sahib Decorators &amp; Caterers has been the name families across Punjab trust for
-            weddings, mehndi, birthdays, baby showers, religious and festive events and
-            every occasion in between. From Ludhiana to Chandigarh and Amritsar to
+            , Sahib Decorators &amp; Caterers (famously known as <strong className="text-sdc-ink font-medium">Sahib Tent House</strong>) has been the trusted name across Ludhiana and Punjab for
+            grand wedding tents, luxury decorations, and authentic catering services. From Ludhiana to Chandigarh, Amritsar, and
             destination venues, every event is executed 100% to your vision.
           </p>
         </div>

@@ -259,13 +259,16 @@ export default function Hero({ ready }) {
         </div>
 
         {/* Title */}
-        <div style={stagger(2)} className="mb-4 sm:mb-5">
+        <div style={stagger(2)} className="mb-3 sm:mb-4">
           <h1
             className="font-cinzel font-black text-shimmer leading-[1.1] sm:leading-[1.15]"
             style={{ fontSize: 'clamp(1.45rem, 6.2vw, 4rem)' }}
           >
             SAHIB DECORATORS &amp; CATERERS
           </h1>
+          <p className="mt-2 text-[0.72rem] sm:text-[0.8rem] tracking-[0.2em] sm:tracking-[0.24em] uppercase font-montserrat font-bold text-sdc-teal/85">
+            Sahib Tent House Ludhiana &bull; Luxury Wedding Decor &bull; Royal Catering
+          </p>
         </div>
 
         {/* Punjabi tagline */}

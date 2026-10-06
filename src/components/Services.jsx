@@ -24,8 +24,8 @@ const SERVICES = [
   },
   {
     emoji: '⛺',
-    title: 'Tentage & German Hangars',
-    desc: 'All-weather pandals, carpeted walkways and fairy light entrances.',
+    title: 'Tent House & German Hangars',
+    desc: 'All-weather royal wedding tents, German hangars, carpeted walkways and fairy light entrances across Ludhiana.',
   },
   {
     emoji: '🍽️',
